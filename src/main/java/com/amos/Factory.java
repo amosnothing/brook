@@ -1,8 +1,10 @@
 package com.amos;
 
-import com.amos.common.NameBuilder;
-import com.amos.common.PhoneBuilder;
 import com.amos.example.Builder;
+import com.amos.example.NameBuilder;
+import com.amos.example.PhoneBuilder;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author chenjun
@@ -18,15 +20,20 @@ public final class Factory {
     }
 
     public static NameBuilder nameBuilder() {
+        try{
+            NAME_BUILDER.LOCK.lockInterruptibly();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return NAME_BUILDER;
     }
 
     public static PhoneBuilder phoneBuilder() {
+        try{
+            PHONE_BUILDER.LOCK.lockInterruptibly();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return PHONE_BUILDER;
     }
-
-    public static Builder baseBuilder() {
-        return BASE_BUILDER;
-    }
-
 }

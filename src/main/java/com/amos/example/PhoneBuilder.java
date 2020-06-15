@@ -1,10 +1,11 @@
-package com.amos.common;
+package com.amos.example;
+
 
 /**
  * @author chenjun
  * @date 2020/6/8 18:33
  */
-public final class PhoneBuilder extends BaseBuilder {
+public final class PhoneBuilder extends Builder {
 
     public PhoneBuilder withPhone(String phone) {
         PARAM_MAP.put("phone", phone);

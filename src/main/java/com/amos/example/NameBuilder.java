@@ -1,11 +1,10 @@
-package com.amos.common;
+package com.amos.example;
 
 
 /**
  * @author chenjun
  */
-public final class NameBuilder extends BaseBuilder {
-
+public final class NameBuilder extends Builder {
 
     public NameBuilder withName(String name) {
         PARAM_MAP.put("name", name);

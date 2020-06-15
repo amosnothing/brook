@@ -21,20 +21,29 @@ public class ThreadDemo extends Thread {
     public void run() {
         System.out.println("Running " + threadName);
         try {
-            int count = 0;
+            int count1 = 0;
+            int count2 = 0;
             int loop = 100;
             for (int i = loop; i > 0; i--) {
                 // 往map中put线程名
-                String str = Factory.baseBuilder().withStr(threadName).build();
+                String phone = Factory.phoneBuilder().withPhone(threadName).build();
                 // 判断当前实际线程名和从map中get到的线程名是否一致
-                boolean bl = threadName.equals(str);
-                if (!bl) {
-                    System.out.println("Thread: " + threadName + ", loop:" + i + ", str:" + str);
-                    count++;
+                boolean flag1 = threadName.equals(phone);
+                if (!flag1) {
+                    System.out.println("Thread: " + threadName + ", loop:" + i + ", phone:" + phone);
+                    count1++;
+                }
+                String name = Factory.nameBuilder().withName(threadName).build();
+                // 判断当前实际线程名和从map中get到的线程名是否一致
+                boolean flag2 = threadName.equals(name);
+                if (!flag2) {
+                    System.out.println("Thread: " + threadName + ", loop:" + i + ", name:" + name);
+                    count2++;
                 }
                 Thread.sleep(5);
             }
-            System.out.println("Thread:" + threadName + ", 冲突次数：" + count);
+            System.out.println("Thread:" + threadName + ", phone冲突次数：" + count1);
+            System.out.println("Thread:" + threadName + ", name冲突次数：" + count2);
         } catch (InterruptedException e) {
             System.out.println("Thread " + threadName + " interrupted.");
         }
