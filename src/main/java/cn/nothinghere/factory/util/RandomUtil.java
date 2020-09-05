@@ -3,12 +3,32 @@ package cn.nothinghere.factory.util;
 import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 /**
  * @author chenjun
  */
 public final class RandomUtil {
+
+    /**
+     * 根据value的数值（权重），返回因权重选中键值对的value
+     *
+     * @param originMap
+     * @param <K>
+     * @return
+     */
+    public static <K> K choice(Map<K, Integer> originMap) {
+        TreeMap<Double, K> weightMap = new TreeMap<>();
+
+        AtomicReference<Double> i = new AtomicReference<>(0D);
+        originMap.forEach(
+                (k, v) -> weightMap.put((i.updateAndGet(v1 -> v1 + v)), k));
+
+        double randomWeight = weightMap.lastKey() * Math.random();
+        SortedMap<Double, K> tailMap = weightMap.tailMap(randomWeight, false);
+        return weightMap.get(tailMap.firstKey());
+    }
 
     /**
      * 集合随机取值
@@ -40,7 +60,7 @@ public final class RandomUtil {
      * 集合随机取值
      *
      * @param tSet 集合
-     * @param <T>   集合类型
+     * @param <T>  集合类型
      * @return 集合当中随机的某几个数值
      */
     public static <T> Set<T> choice(Set<T> tSet, int count) {
@@ -57,7 +77,7 @@ public final class RandomUtil {
      * 集合随机取值
      *
      * @param tSet 集合
-     * @param <T>   集合类型
+     * @param <T>  集合类型
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(Set<T> tSet) {
@@ -65,6 +85,7 @@ public final class RandomUtil {
         Collections.shuffle(list);
         return choice(list);
     }
+
     /**
      * 数组随机取值
      *
@@ -104,4 +125,42 @@ public final class RandomUtil {
         return tArray[(new SecureRandom().nextInt(tArray.length))];
     }
 
+    public static <K, V> V choiceV(Map<K, V> kvMap) {
+        return kvMap.get(choiceK(kvMap));
+    }
+
+    public static <K, V> K choiceK(Map<K, V> kvMap) {
+        Set<K> keySet = kvMap.keySet();
+        return RandomUtil.choice(keySet);
+    }
+
+    /**
+     * 1 = 0000 0001
+     * 最后一位总是被置为1，前面几位不变
+     *
+     * @param bound 数字上届（不包含），必须为正数
+     * @return 随机奇数
+     */
+    public static int odd(int bound) {
+        return new SecureRandom().nextInt(bound) | 1;
+    }
+
+    /**
+     * -2 = 1111 1110
+     * 最后一位总是被置为0，前面几位不改变
+     *
+     * @param bound 数字上届（不包含），必须为正数
+     * @return 随机偶数 + 0
+     */
+    public static int even(int bound) {
+        return new SecureRandom().nextInt(bound) & -2;
+    }
+
+    public static int nextInt(int bound) {
+        return new SecureRandom().nextInt(bound);
+    }
+
+    public static int nextInt(int originInclude, int endExclude) {
+        return new SecureRandom().nextInt(endExclude - originInclude) + originInclude;
+    }
 }
