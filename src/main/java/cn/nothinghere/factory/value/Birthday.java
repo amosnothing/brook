@@ -2,7 +2,6 @@ package cn.nothinghere.factory.value;
 
 import cn.nothinghere.factory.Field;
 import cn.nothinghere.factory.Randomize;
-import cn.nothinghere.factory.Verifiable;
 import cn.nothinghere.factory.util.RandomUtil;
 
 import java.io.Serializable;
@@ -14,7 +13,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 /**
  * @author amos
  */
-public class Birthday implements Field, Randomize,  Verifiable, Serializable {
+public class Birthday implements Field, Randomize, Serializable {
 
     private static final long serialVersionUID = -90000104L;
 
@@ -80,14 +79,9 @@ public class Birthday implements Field, Randomize,  Verifiable, Serializable {
     }
 
     @Override
-    public void random() {
+    public void randomIfNull() {
         if (this.getBirth() == null) {
             this.setBirth(choiceByAge(MIN_AGE, MAX_AGE + 1));
         }
-    }
-
-    @Override
-    public void verify() {
-        return;
     }
 }

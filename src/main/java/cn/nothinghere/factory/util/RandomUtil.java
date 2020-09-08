@@ -91,7 +91,7 @@ public final class RandomUtil {
      *
      * @param tArray 数据
      * @param <T>    数组类型
-     * @return 数组当中随机的某一个数值
+     * @return 数组当中随机的某几个数值
      */
     @SuppressWarnings("unchecked")
     public static <T> T[] choice(T[] tArray, int count) {
@@ -160,7 +160,9 @@ public final class RandomUtil {
         return new SecureRandom().nextInt(bound);
     }
 
-    public static int nextInt(int originInclude, int endExclude) {
-        return new SecureRandom().nextInt(endExclude - originInclude) + originInclude;
+    public static int nextInt(int startInclude, int endExclude) {
+        return new SecureRandom().nextInt(endExclude - startInclude) + startInclude;
     }
+
+
 }

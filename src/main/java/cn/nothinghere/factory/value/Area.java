@@ -69,7 +69,7 @@ public class Area implements Value<String>, Randomize, Verifiable, Serializable 
 
     @Override
     @SuppressWarnings("unchecked")
-    public void random() {
+    public void randomIfNull() {
 
         String provinceKey = this.getProvince();
         // 省随机赋值

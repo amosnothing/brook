@@ -6,7 +6,7 @@ import cn.nothinghere.factory.value.Gender;
 import cn.nothinghere.factory.value.Name;
 
 /**
- * 名字素材来源：
+ * 名字素材来源: 见name.yml
  *
  * @author amos
  */
@@ -15,7 +15,7 @@ public final class NameBuilder implements Builder {
     private final Name name = new Name();
 
     private final static int MIN_LENGTH = 2;
-    private final static int MAX_LENGTH = 3;
+    private final static int MAX_LENGTH = 4;
 
     protected NameBuilder() {
     }
@@ -41,7 +41,7 @@ public final class NameBuilder implements Builder {
 
     @Override
     public String build() {
-        name.random();
+        name.randomIfNull();
         return this.name.asString();
     }
 }

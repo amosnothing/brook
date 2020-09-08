@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import java.security.SecureRandom;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 public class NameBuilderTest {
 
@@ -43,8 +42,6 @@ public class NameBuilderTest {
             // 性别不限
             name = Factory.nameBuilder().withLength(length)
                     .build();
-            System.out.println(length);
-            System.out.println(name);
             assertThat(name.length()).isEqualTo(length);
             assertThat(name).matches("\\W+");
         }
@@ -93,7 +90,7 @@ public class NameBuilderTest {
     public void testAllParameters() {
         for (int i = 0; i < loop; i++) {
             int length =
-                    new SecureRandom().nextInt(2) + 2;
+                    new SecureRandom().nextInt(3) + 2;
             // 男性 + 姓氏 + 长度
             name = Factory.nameBuilder().withLength(length)
                     .withGender(Gender.MALE)
@@ -107,15 +104,16 @@ public class NameBuilderTest {
             assertThat(name.length()).isEqualTo(length);
             assertThat(name).matches("\\W+");
 
-            length = new SecureRandom().nextInt(2) + 2;
+            length = new SecureRandom().nextInt(3) + 2;
             // 全名 + 长度 + 性别
             name = Factory.nameBuilder().withLength(length)
                     .withGender(new SecureRandom().nextInt(2) == 0 ? Gender.MALE : Gender.FEMALE)
                     .build();
             assertThat(name.length()).isEqualTo(length);
             assertThat(name).matches("\\W+");
+
             name = Factory.nameBuilder().withLength(2)
-                    .withGender(Gender.MALE)
+                    .withGender(Gender.UNKNOWN)
                     .build();
             assertThat(name.length()).isEqualTo(2);
             assertThat(name).matches("\\W+");
@@ -125,23 +123,15 @@ public class NameBuilderTest {
     @Test(enabled = false)
     public void testException() {
 
-        // 性别传入为null
-        assertThatNullPointerException().isThrownBy(
-                () -> Factory.nameBuilder()
-        );
         // 长度<=0时 IllegalArgumentException
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Factory.nameBuilder().withLength(-1)
-        );
+                () -> Factory.nameBuilder().withLength(0));
         // 长度超过最大长度
         assertThatIllegalArgumentException().isThrownBy(
-                () -> Factory.nameBuilder().withLength(5).build()
-        );
-        // 不传入位置和性别 只传入长度=3 无异常
+                () -> Factory.nameBuilder().withLength(5));
+        // 不传入性别 只传入长度=3 无异常
         assertThatCode(() -> Factory.nameBuilder().withLength(3).build()).doesNotThrowAnyException();
-        assertThatIllegalArgumentException().isThrownBy(
-                () -> Factory.nameBuilder().withLength(3).build()
-        );
+
         assertThatIllegalArgumentException().isThrownBy(
                 () -> Factory.nameBuilder().withLength(3).build()
         );

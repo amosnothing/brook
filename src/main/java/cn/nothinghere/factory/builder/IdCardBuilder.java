@@ -113,10 +113,9 @@ public final class IdCardBuilder implements Builder {
     @Override
     public String build() {
         this.area.verify();
-        this.area.random();
+        this.area.randomIfNull();
         String areaCode = this.area.asCode();
-        this.birthday.verify();
-        this.birthday.random();
+        this.birthday.randomIfNull();
         String birth = this.birthday.asString();
 
         String serialNo = serialNo();

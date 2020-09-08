@@ -19,6 +19,9 @@ public class Name implements Field, Randomize, Serializable {
     private Integer length;
 
     private final static Map<String, Object> NAME_MAP = Collections.unmodifiableMap(YamlUtil.load("name.yml"));
+    /**
+     * 姓氏中存在复姓：比如：欧阳
+     */
     @SuppressWarnings("unchecked")
     private final static Map<String, Integer> LAST_NAME_MAP = Collections.unmodifiableMap((Map<String, Integer>) NAME_MAP.get("last_name"));
     @SuppressWarnings("unchecked")
@@ -29,6 +32,20 @@ public class Name implements Field, Randomize, Serializable {
     private final static Map<String, Integer> FIRST_NAME_FEMALE_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("female"));
     @SuppressWarnings("unchecked")
     private final static Map<String, Integer> FIRST_NAME_UNKNOWN_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("unknown"));
+
+    /**
+     * 单字姓氏
+     */
+    private final static Map<String, Integer> LAST_NAME_LEN1_MAP = LAST_NAME_MAP.entrySet().stream()
+            .filter(map -> map.getKey().length() == 1)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    /**
+     * 复姓
+     */
+    private final static Map<String, Integer> LAST_NAME_LEN2_MAP = LAST_NAME_MAP.entrySet().stream()
+            .filter(map -> map.getKey().length() == 2)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
 
     /**
      * 筛选女性中长度=2的名字
@@ -88,28 +105,36 @@ public class Name implements Field, Randomize, Serializable {
 
     @Override
     public String asString() {
+        String lastName;
+        int firstNameLength;
         // 姓氏随机
-        String lastName = RandomUtil.choice(LAST_NAME_MAP);
+        if (this.length == 4) {
+            lastName = RandomUtil.choice(LAST_NAME_LEN2_MAP);
+            firstNameLength = 2;
+        } else {
+            lastName = RandomUtil.choice(LAST_NAME_LEN1_MAP);
+            firstNameLength = this.length - 1;
+        }
 
         String firstName;
         switch (this.getGender()) {
             case FEMALE:
-                firstName = this.length == 3 ? RandomUtil.choice(FIRST_NAME_FEMALE_LEN2_MAP)
+                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_FEMALE_LEN2_MAP)
                         : RandomUtil.choice(FIRST_NAME_FEMALE_LEN1_MAP);
                 break;
             case MALE:
-                firstName = this.length == 3 ? RandomUtil.choice(FIRST_NAME_MALE_LEN2_MAP)
+                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_MALE_LEN2_MAP)
                         : RandomUtil.choice(FIRST_NAME_MALE_LEN1_MAP);
                 break;
             default:
-                firstName = this.length == 3 ? RandomUtil.choice(FIRST_NAME_UNKNOWN_LEN2_MAP)
+                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_UNKNOWN_LEN2_MAP)
                         : RandomUtil.choice(FIRST_NAME_UNKNOWN_LEN1_MAP);
         }
         return lastName + firstName;
     }
 
     @Override
-    public void random() {
+    public void randomIfNull() {
         long now = System.currentTimeMillis();
         if (null == this.gender) {
             // 取到性别未知的概率设置小些, 接近 1/7

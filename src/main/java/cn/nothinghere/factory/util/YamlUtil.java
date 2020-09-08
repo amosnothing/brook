@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 public class YamlUtil {
 
     @SuppressWarnings("unchecked")
-    public static  <T> T load(String fileName) {
+    public static <T> T load(String fileName) {
         Object object;
         try {
             object = new Yaml().load(FileUtil.asInputStream(fileName));
