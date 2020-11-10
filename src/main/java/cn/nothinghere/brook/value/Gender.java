@@ -1,7 +1,7 @@
-package cn.nothinghere.factory.value;
+package cn.nothinghere.brook.value;
 
-import cn.nothinghere.factory.Value;
-import cn.nothinghere.factory.util.RandomUtil;
+import cn.nothinghere.brook.Value;
+import cn.nothinghere.brook.util.RandomUtil;
 
 
 /**

@@ -1,10 +1,10 @@
-package cn.nothinghere.factory.value;
+package cn.nothinghere.brook.value;
 
-import cn.nothinghere.factory.Randomize;
-import cn.nothinghere.factory.Value;
-import cn.nothinghere.factory.Verifiable;
-import cn.nothinghere.factory.util.RandomUtil;
-import cn.nothinghere.factory.util.YamlUtil;
+import cn.nothinghere.brook.Randomize;
+import cn.nothinghere.brook.Value;
+import cn.nothinghere.brook.Verifiable;
+import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.util.YamlUtil;
 
 import java.io.Serializable;
 import java.text.MessageFormat;

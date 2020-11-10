@@ -1,7 +1,7 @@
-package cn.nothinghere.factory.value;
+package cn.nothinghere.brook.value;
 
-import cn.nothinghere.factory.Field;
-import cn.nothinghere.factory.Randomize;
+import cn.nothinghere.brook.Field;
+import cn.nothinghere.brook.Randomize;
 
 import java.io.Serializable;
 

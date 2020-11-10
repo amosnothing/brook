@@ -1,4 +1,4 @@
-package cn.nothinghere.factory.util;
+package cn.nothinghere.brook.util;
 
 import java.io.*;
 import java.net.URL;

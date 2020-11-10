@@ -1,8 +1,8 @@
-package cn.nothinghere.factory.builder;
+package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.factory.Builder;
-import cn.nothinghere.factory.value.BankCode;
-import cn.nothinghere.factory.value.Bin;
+import cn.nothinghere.brook.Builder;
+import cn.nothinghere.brook.value.BankCode;
+import cn.nothinghere.brook.value.Bin;
 
 import java.util.Objects;
 

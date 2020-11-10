@@ -4,7 +4,7 @@ package cn.nothinghere.brook.builder;
  * @author amos.chenj@outlook.com
  * @date 2020/6/8 18:34
  */
-public final class Factory {
+public final class DataFactory {
 
     public static IdCardBuilder idCardBuilder() {
         return new IdCardBuilder();
@@ -30,6 +30,6 @@ public final class Factory {
         return new AddressBuilder();
     }
 
-    private Factory() {
+    private DataFactory() {
     }
 }

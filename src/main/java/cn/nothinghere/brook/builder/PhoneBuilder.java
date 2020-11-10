@@ -1,13 +1,13 @@
-package cn.nothinghere.factory.builder;
+package cn.nothinghere.brook.builder;
 
 
-import cn.nothinghere.factory.Builder;
-import cn.nothinghere.factory.Field;
-import cn.nothinghere.factory.Randomize;
-import cn.nothinghere.factory.util.RandomStringUtil;
-import cn.nothinghere.factory.util.RandomUtil;
-import cn.nothinghere.factory.util.YamlUtil;
-import cn.nothinghere.factory.value.Operator;
+import cn.nothinghere.brook.Builder;
+import cn.nothinghere.brook.Field;
+import cn.nothinghere.brook.Randomize;
+import cn.nothinghere.brook.util.RandomStringUtil;
+import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.util.YamlUtil;
+import cn.nothinghere.brook.value.Operator;
 
 import java.io.Serializable;
 import java.util.List;

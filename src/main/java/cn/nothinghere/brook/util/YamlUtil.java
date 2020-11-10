@@ -1,4 +1,4 @@
-package cn.nothinghere.factory.util;
+package cn.nothinghere.brook.util;
 
 import org.yaml.snakeyaml.Yaml;
 

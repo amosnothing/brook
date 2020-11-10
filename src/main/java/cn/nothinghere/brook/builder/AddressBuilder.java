@@ -1,9 +1,9 @@
-package cn.nothinghere.factory.builder;
+package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.factory.Builder;
-import cn.nothinghere.factory.region.City;
-import cn.nothinghere.factory.region.Province;
-import cn.nothinghere.factory.value.Area;
+import cn.nothinghere.brook.Builder;
+import cn.nothinghere.brook.region.City;
+import cn.nothinghere.brook.region.Province;
+import cn.nothinghere.brook.value.Area;
 
 import java.util.Objects;
 

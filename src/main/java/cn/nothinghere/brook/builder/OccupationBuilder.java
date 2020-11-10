@@ -1,6 +1,6 @@
-package cn.nothinghere.factory.builder;
+package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.factory.Builder;
+import cn.nothinghere.brook.Builder;
 
 /**
  * 职业

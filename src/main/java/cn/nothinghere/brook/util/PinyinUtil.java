@@ -1,4 +1,4 @@
-package cn.nothinghere.factory.util;
+package cn.nothinghere.brook.util;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

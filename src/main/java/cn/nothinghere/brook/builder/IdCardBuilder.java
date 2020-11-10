@@ -1,16 +1,18 @@
-package cn.nothinghere.factory.builder;
+package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.factory.Builder;
-import cn.nothinghere.factory.util.RandomUtil;
-import cn.nothinghere.factory.value.Area;
-import cn.nothinghere.factory.value.Birthday;
-import cn.nothinghere.factory.value.Gender;
+import cn.nothinghere.brook.Builder;
+import cn.nothinghere.brook.region.City;
+import cn.nothinghere.brook.region.Province;
+import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.value.Area;
+import cn.nothinghere.brook.value.Birthday;
+import cn.nothinghere.brook.value.Gender;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
-import static cn.nothinghere.factory.value.Birthday.choiceByAge;
+import static cn.nothinghere.brook.value.Birthday.choiceByAge;
 
 /**
  * @author amos.chenj@outlook.com
@@ -36,9 +38,21 @@ public final class IdCardBuilder implements Builder {
         return this;
     }
 
+    public IdCardBuilder withProvince(Province province) {
+        Objects.requireNonNull(province, "province");
+        area.setProvince(province.getName());
+        return this;
+    }
+
     public IdCardBuilder withCity(String city) {
         Objects.requireNonNull(city, "city");
         area.setCity(city);
+        return this;
+    }
+
+    public IdCardBuilder withCity(City city) {
+        Objects.requireNonNull(city, "city");
+        area.setCity(city.getName());
         return this;
     }
 

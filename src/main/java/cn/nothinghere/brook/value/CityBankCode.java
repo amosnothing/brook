@@ -1,4 +1,4 @@
-package cn.nothinghere.factory.value;
+package cn.nothinghere.brook.value;
 
 /**
  * 城市商业银行 ~ 不常用

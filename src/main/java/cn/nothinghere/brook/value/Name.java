@@ -1,9 +1,9 @@
-package cn.nothinghere.factory.value;
+package cn.nothinghere.brook.value;
 
-import cn.nothinghere.factory.Field;
-import cn.nothinghere.factory.Randomize;
-import cn.nothinghere.factory.util.RandomUtil;
-import cn.nothinghere.factory.util.YamlUtil;
+import cn.nothinghere.brook.Field;
+import cn.nothinghere.brook.Randomize;
+import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.util.YamlUtil;
 
 import java.io.Serializable;
 import java.util.Collections;

@@ -1,6 +1,6 @@
-package cn.nothinghere.factory.region;
+package cn.nothinghere.brook.region;
 
-import static cn.nothinghere.factory.region.Province.*;
+import static cn.nothinghere.brook.region.Province.*;
 
 /**
  * @author amos.chenj@outlook.com
