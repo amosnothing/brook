@@ -2,7 +2,6 @@ package cn.nothinghere.brook;
 
 /**
  * @author amos.chenj@outlook.com
- * @date 2020/6/11 8:29
  */
 public interface Builder {
     /**

@@ -45,7 +45,7 @@ public class Birthday implements Field, Randomize, Serializable {
     }
 
     /**
-     * @param startAgeInclude 起始年龄 包含，亦是说生成的年龄一定是>=此年龄
+     * @param startAgeInclude 起始年龄 包含，亦是说生成的年龄一定是大於等於此年龄
      * @param endAgeExclude   结束年龄 不包含
      * @return 在起始年龄 ~ 结束年龄范围内的证件号码
      */

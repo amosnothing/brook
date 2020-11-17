@@ -8,7 +8,6 @@ import cn.nothinghere.brook.value.Area;
 import java.util.Objects;
 
 /**
- * 省->市(市辖区)->县(区、市)->镇(街道)->村(居委会)
  *
  * @author amos.chenj@outlook.com
  */

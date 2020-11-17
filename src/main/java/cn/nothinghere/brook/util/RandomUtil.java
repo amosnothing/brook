@@ -17,9 +17,9 @@ public final class RandomUtil {
     /**
      * 根据value的数值（权重），返回因权重选中键值对的value
      *
-     * @param originMap
-     * @param <K>
-     * @return
+     * @param originMap 初始map
+     * @param <K>       需要用来比对的key
+     * @return 被选中的key
      */
     public static <K> K choice(Map<K, Integer> originMap) {
         TreeMap<Double, K> weightMap = new TreeMap<>();

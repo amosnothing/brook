@@ -12,13 +12,10 @@ public class PhoneBuilderTest {
     public void testWithOperator() {
         for (int i = 0; i < loop; i++) {
             String phone = DataFactory.phoneBuilder().withOperator(Operator.CMCC).build();
-            System.out.println(phone);
             Assertions.assertThat(phone).hasSize(11);
             phone = DataFactory.phoneBuilder().withOperator(Operator.CUCC).build();
-            System.out.println(phone);
             Assertions.assertThat(phone).hasSize(11);
             phone = DataFactory.phoneBuilder().withOperator(Operator.CTCC).build();
-            System.out.println(phone);
             Assertions.assertThat(phone).hasSize(11);
 
         }
