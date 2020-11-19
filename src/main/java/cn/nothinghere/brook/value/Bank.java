@@ -7,12 +7,19 @@ package cn.nothinghere.brook.value;
  *
  * @author amos.chenj@outlook.com
  */
-public interface BankCode {
+public interface Bank {
 
     /**
-     * 不同子类枚举的name()转为小写即可
+     * 为方便直接取到对应枚举的code
      *
-     * @return 銀行編碼
+     * @return 银行编码
      */
     String getCode();
+
+    /**
+     * 为方便直接取到对应枚举的name
+     *
+     * @return 银行全名
+     */
+    String getName();
 }

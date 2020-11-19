@@ -8,7 +8,6 @@ import cn.nothinghere.brook.value.Area;
 import java.util.Objects;
 
 /**
- *
  * @author amos.chenj@outlook.com
  */
 public final class AddressBuilder implements Builder {

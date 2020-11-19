@@ -17,14 +17,14 @@ public class Birthday implements Field, Randomize, Serializable {
 
     private static final long serialVersionUID = -1964418712492743885L;
 
-    private final static int MIN_AGE = 18;
+    private static final int MIN_AGE = 18;
     /**
      * 根据wiki：https://zh.wikipedia.org/wiki/中国大陆人口
      * 预期寿命	76.34岁（2015年国家统计局抽样）
      * • 男性	73.64岁（2015年国家统计局抽样）
      * • 女性	79.43岁（2015年国家统计局抽样）
      */
-    private final static int MAX_AGE = 80;
+    private static final int MAX_AGE = 80;
 
     private LocalDate birth;
 

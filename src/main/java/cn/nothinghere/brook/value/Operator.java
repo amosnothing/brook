@@ -1,5 +1,9 @@
 package cn.nothinghere.brook.value;
 
+/**
+ * @author amos
+ */
+
 public enum Operator {
 
     /**

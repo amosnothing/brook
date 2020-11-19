@@ -21,10 +21,10 @@ public class Bin implements Field, Randomize, Serializable {
 
     private static final long serialVersionUID = 2011815396278203785L;
 
-    private BankCode bankCode;
+    private Bank bank;
     private CardType type;
 
-    public static final Map<String, Object> BIN_MAP;
+    protected static final Map<String, Object> BIN_MAP;
 
     static {
         BIN_MAP = YamlUtil.load("bin.yml");
@@ -34,7 +34,7 @@ public class Bin implements Field, Randomize, Serializable {
      * 只包含银行卡类型映射关系表
      * 因为类型在map的第三级，查找起来比较困难，需要单独取出再组合
      */
-    public static final Map<String, Map<String, Integer>> CARD_TYPE_MAP = new HashMap<>();
+    protected static final Map<String, Map<String, Integer>> CARD_TYPE_MAP = new HashMap<>();
 
     static {
         Set<String> keySet = BIN_MAP.keySet();
@@ -65,13 +65,12 @@ public class Bin implements Field, Randomize, Serializable {
         }
     }
 
-
-    public BankCode getBankCode() {
-        return bankCode;
+    public Bank getBank() {
+        return bank;
     }
 
-    public void setBankCode(BankCode bankCode) {
-        this.bankCode = bankCode;
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
     public CardType getType() {
@@ -91,18 +90,18 @@ public class Bin implements Field, Randomize, Serializable {
         String type;
         // code为null，则type一定不为null
         Map<String, Integer> typeMap;
-        if (null == this.bankCode && null != this.type) {
+        if (null == this.bank && null != this.type) {
             type = this.type.getType();
             typeMap = CARD_TYPE_MAP.get(type);
-        } else if (null == this.type && null != this.bankCode) {
-            code = this.bankCode.getCode();
+        } else if (null == this.type && null != this.bank) {
+            code = this.bank.getCode();
             Map<String, Object> codeMap = (Map<String, Object>) BIN_MAP.get(code);
             typeMap = (Map<String, Integer>) RandomUtil.choiceV(codeMap);
 
         }
         // 都不为null的情况
         else {
-            code = this.bankCode.getCode();
+            code = this.bank.getCode();
             type = this.type.getType();
             Map<String, Object> codeMap = (Map<String, Object>) BIN_MAP.get(code);
             typeMap = (Map<String, Integer>) codeMap.get(type);
@@ -120,8 +119,8 @@ public class Bin implements Field, Randomize, Serializable {
     public void randomIfNull() {
         // 只有当都没有传参时才做随机赋值
         // 否则外部传参 + 随机赋值，可能导致没有对应的bin匹配
-        if (null == this.getBankCode() && null == this.getType()) {
-            this.setBankCode(RandomUtil.choice(StateBankCode.values()));
+        if (null == this.getBank() && null == this.getType()) {
+            this.setBank(RandomUtil.choice(StateBank.values()));
             this.setType(CardType.DC);
         }
     }

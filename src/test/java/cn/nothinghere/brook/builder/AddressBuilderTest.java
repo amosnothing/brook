@@ -28,13 +28,13 @@ public class AddressBuilderTest {
     @Test
     public void testWithProvince1() {
         for (int i = 0; i < loop; i++) {
-            Province beijing = Province.Beijing;
+            Province beijing = Province.BEIJING;
             address = DataFactory.addressBuilder().withProvince(beijing).build();
             assertThat(address).startsWith(beijing.getName());
-            Province hubei = Province.Hubei;
+            Province hubei = Province.HUBEI;
             address = DataFactory.addressBuilder().withProvince(hubei).build();
             assertThat(address).startsWith(hubei.getName());
-            Province guangdong = Province.Guangdong;
+            Province guangdong = Province.GUANGDONG;
             address = DataFactory.addressBuilder().withProvince(guangdong).build();
             assertThat(address).startsWith(guangdong.getName());
         }
@@ -43,14 +43,14 @@ public class AddressBuilderTest {
     @Test
     public void testWithCity() {
         for (int i = 0; i < loop; i++) {
-            Province beijing = Province.Beijing;
+            Province beijing = Province.BEIJING;
             address = DataFactory.addressBuilder().withProvince(beijing)
                     .withCity("北京市").build();
             assertThat(address).startsWith(beijing.getName());
-            Province hubei = Province.Hubei;
+            Province hubei = Province.HUBEI;
             address = DataFactory.addressBuilder().withProvince(hubei).build();
             assertThat(address).startsWith(hubei.getName());
-            Province guangdong = Province.Guangdong;
+            Province guangdong = Province.GUANGDONG;
             address = DataFactory.addressBuilder().withProvince(guangdong).build();
             assertThat(address).startsWith(guangdong.getName());
         }

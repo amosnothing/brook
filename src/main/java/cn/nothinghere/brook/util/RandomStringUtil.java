@@ -6,6 +6,8 @@ import java.util.Arrays;
  * @author amos.chenj@outlook.com
  */
 public final class RandomStringUtil {
+    private RandomStringUtil() {
+    }
 
     public static String numeric(int count) {
         return random(count, false, true);

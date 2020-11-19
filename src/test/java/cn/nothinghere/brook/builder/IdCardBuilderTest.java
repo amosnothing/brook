@@ -34,7 +34,7 @@ public class IdCardBuilderTest {
             assertThat(idCard.length()).isEqualTo(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
-            idCard = DataFactory.idCardBuilder().withProvince(Province.Beijing).build();
+            idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING).build();
             assertThat(idCard.length()).isEqualTo(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
@@ -48,8 +48,8 @@ public class IdCardBuilderTest {
                     .build();
             assertThat(idCard.length()).isEqualTo(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
-            idCard = DataFactory.idCardBuilder().withProvince(Province.Beijing)
-                    .withCity(City.Beijing)
+            idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING)
+                    .withCity(City.BEIJING)
                     .build();
             assertThat(idCard.length()).isEqualTo(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
@@ -68,8 +68,8 @@ public class IdCardBuilderTest {
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
             idCard = DataFactory.idCardBuilder()
-                    .withProvince(Province.Guangdong)
-                    .withCity(City.Guangzhou)
+                    .withProvince(Province.GUANGDONG)
+                    .withCity(City.GUANGZHOU)
                     .withDistrict("天河区")
                     .build();
             assertThat(idCard.length()).isEqualTo(18);

@@ -28,7 +28,7 @@ public class Area implements Value<String>, Randomize, Verifiable, Serializable 
     private String city;
     private String district;
 
-    private final static Map<String, Object> AREA_MAP;
+    private static final Map<String, Object> AREA_MAP;
 
     static {
         AREA_MAP = Collections.unmodifiableMap(YamlUtil.load("area.yml"));
@@ -125,8 +125,8 @@ public class Area implements Value<String>, Randomize, Verifiable, Serializable 
         if (null == districtKey) {
             return;
         }
-        Integer district = (Integer) cityMap.get(districtKey);
-        if (null == district) {
+        Integer districtName = (Integer) cityMap.get(districtKey);
+        if (null == districtName) {
             throw new IllegalArgumentException(MessageFormat.format("There is no {0} in {1}-{2}.", districtKey, cityKey, provinceKey));
         }
     }

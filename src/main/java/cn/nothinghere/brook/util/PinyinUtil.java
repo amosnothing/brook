@@ -35,4 +35,6 @@ public class PinyinUtil {
         return pinyinStr.toString();
     }
 
+    private PinyinUtil() {
+    }
 }

@@ -29,6 +29,10 @@ public final class DataFactory {
         return new AddressBuilder();
     }
 
+    public static CompanyBuilder companyBuilder() {
+        return new CompanyBuilder();
+    }
+
     private DataFactory() {
     }
 }

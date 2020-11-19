@@ -2,21 +2,18 @@ package cn.nothinghere.brook.util;
 
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.FileNotFoundException;
-
 /**
  * @author amos.chenj@outlook.com
  */
 public class YamlUtil {
 
+    private YamlUtil() {
+    }
+
     @SuppressWarnings("unchecked")
     public static <T> T load(String fileName) {
         Object object;
-        try {
-            object = new Yaml().load(FileUtil.asInputStream(fileName));
-        } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException("传入的文件不存在");
-        }
+        object = new Yaml().load(FileUtil.asInputStream(fileName));
         return (T) object;
     }
 }

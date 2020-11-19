@@ -1,7 +1,7 @@
 package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.value.BankCode;
+import cn.nothinghere.brook.value.Bank;
 import cn.nothinghere.brook.value.Bin;
 
 import java.util.Objects;
@@ -17,9 +17,9 @@ public final class BankCardBuilder implements Builder {
         bin = new Bin();
     }
 
-    public BankCardBuilder withBankCode(BankCode bankCode) {
-        Objects.requireNonNull(bankCode);
-        bin.setBankCode(bankCode);
+    public BankCardBuilder withBank(Bank bank) {
+        Objects.requireNonNull(bank);
+        bin.setBank(bank);
         return this;
     }
 

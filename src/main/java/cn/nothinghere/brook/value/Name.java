@@ -28,62 +28,62 @@ public class Name implements Field, Randomize, Serializable {
      */
     private static final int MAX_LENGTH = 4;
 
-    private final static Map<String, Object> NAME_MAP;
+    private static final Map<String, Object> NAME_MAP;
     /**
      * 姓氏中存在复姓：比如：欧阳
      */
-    private final static Map<String, Integer> LAST_NAME_MAP;
+    private static final Map<String, Integer> LAST_NAME_MAP;
     /**
      * 单字姓氏
      */
-    private final static Map<String, Integer> LAST_NAME_LEN1_MAP;
+    private static final Map<String, Integer> LAST_NAME_LEN1_MAP;
     /**
      * 复姓
      */
-    private final static Map<String, Integer> LAST_NAME_LEN2_MAP;
+    private static final Map<String, Integer> LAST_NAME_LEN2_MAP;
 
     /**
      * 名字 ~ 包括男/女/未知
      */
-    private final static Map<String, Object> FIRST_NAME_MAP;
+    private static final Map<String, Object> FIRST_NAME_MAP;
     /**
      * 名字 ~ 男
      */
-    private final static Map<String, Integer> FIRST_NAME_MALE_MAP;
+    private static final Map<String, Integer> FIRST_NAME_MALE_MAP;
     /**
      * 名字 ~ 女
      */
-    private final static Map<String, Integer> FIRST_NAME_FEMALE_MAP;
+    private static final Map<String, Integer> FIRST_NAME_FEMALE_MAP;
     /**
      * 名字 ~ 未知
      */
-    private final static Map<String, Integer> FIRST_NAME_UNKNOWN_MAP;
+    private static final Map<String, Integer> FIRST_NAME_UNKNOWN_MAP;
 
     /**
      * 筛选女性中长度=2的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_FEMALE_LEN2_MAP;
+    private static final Map<String, Integer> FIRST_NAME_FEMALE_LEN2_MAP;
     /**
      * 筛选女性中长度=1的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_FEMALE_LEN1_MAP;
+    private static final Map<String, Integer> FIRST_NAME_FEMALE_LEN1_MAP;
     /**
      * 筛选男性中长度=2的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_MALE_LEN2_MAP;
+    private static final Map<String, Integer> FIRST_NAME_MALE_LEN2_MAP;
     /**
      * 筛选男性中长度=1的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_MALE_LEN1_MAP;
+    private static final Map<String, Integer> FIRST_NAME_MALE_LEN1_MAP;
 
     /**
      * 筛选性别未知中长度=2的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_UNKNOWN_LEN2_MAP;
+    private static final Map<String, Integer> FIRST_NAME_UNKNOWN_LEN2_MAP;
     /**
      * 筛选性别未知中长度=1的名字
      */
-    private final static Map<String, Integer> FIRST_NAME_UNKNOWN_LEN1_MAP;
+    private static final Map<String, Integer> FIRST_NAME_UNKNOWN_LEN1_MAP;
 
     static {
         NAME_MAP = Collections.unmodifiableMap(YamlUtil.load("name.yml"));

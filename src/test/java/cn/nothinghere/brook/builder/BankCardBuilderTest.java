@@ -1,8 +1,8 @@
 package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.value.Bin;
-import cn.nothinghere.brook.value.CityBankCode;
-import cn.nothinghere.brook.value.StateBankCode;
+import cn.nothinghere.brook.value.CityBank;
+import cn.nothinghere.brook.value.StateBank;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,37 +15,37 @@ public class BankCardBuilderTest {
     @Test
     public void testWithBankCode() {
         for (int i = 0; i < loop; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.ABC).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.ABC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.BOC).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.BOC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.BOHAIB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.BOHAIB).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.COMM).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.COMM).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.CCB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.CCB).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.CEB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.CEB).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.CIB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.CIB).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.CZBANK).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.CZBANK).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.CITIC).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.CITIC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.EGBANK).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.EGBANK).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.GDB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.GDB).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.HXBANK).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.HXBANK).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.ICBC).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.ICBC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.PSBC).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.PSBC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.SPABANK).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.SPABANK).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(StateBankCode.SPDB).build();
+            bankCardNo = DataFactory.bankCardBuilder().withBank(StateBank.SPDB).build();
             assertThat(bankCardNo).matches("\\d+");
         }
     }
@@ -68,19 +68,19 @@ public class BankCardBuilderTest {
     @Test
     public void testBuild() {
         for (int i = 0; i < loop; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(CityBankCode.XMBANK)
+            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.XMBANK)
                     .withType(Bin.CardType.DC)
                     .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(CityBankCode.XMCCB)
+            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.XMCCB)
                     .withType(Bin.CardType.DC)
                     .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(CityBankCode.BOD)
+            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.BOD)
                     .withType(Bin.CardType.CC)
                     .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBankCode(CityBankCode.YXCCB)
+            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.YXCCB)
                     .withType(Bin.CardType.CC)
                     .build();
             assertThat(bankCardNo).matches("\\d+");
