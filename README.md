@@ -5,7 +5,7 @@ pom中加入依赖:
 <dependency>
   <groupId>cn.nothinghere</groupId>
   <artifactId>brook</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
@@ -43,15 +43,15 @@ String idCardNo = idCardBuilder.build();
 
 ```
 String idCardNo = idCardBuilder
-        .withProvince(Province.Anhui)
+        .withProvince(Province.ANHUI)
         .build();
 ```
 - 指定省/市
 
 ```
 String idCardNo = idCardBuilder
-        .withProvince(Province.Beijing)
-        .withCity(City.Beijing)
+        .withProvince(Province.BEIJING)
+        .withCity(City.BEIJING)
         .build();
 ```
 
@@ -61,8 +61,8 @@ String idCardNo = idCardBuilder
 
 ```
 String idCardNo = idCardBuilder
-     .withProvince(Province.Guangdong)
-     .withCity(City.Guangzhou)
+     .withProvince(Province.GUANGDONG)
+     .withCity(City.GUANGZHOU)
      .withDistrict("天河区")
      .build();
 ```
