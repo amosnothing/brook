@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 /**
  * @author amos.chenj@outlook.com
  */
-public final class RandomUtil {
+public final class RandomUtils {
 
-    private RandomUtil() {
+    private RandomUtils() {
     }
 
     /**
@@ -56,6 +56,9 @@ public final class RandomUtil {
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(List<T> tList) {
+        if (tList.isEmpty()) {
+            return null;
+        }
         return tList.get(new SecureRandom().nextInt(tList.size()));
     }
 
@@ -134,7 +137,7 @@ public final class RandomUtil {
 
     public static <K, V> K choiceK(Map<K, V> kvMap) {
         Set<K> keySet = kvMap.keySet();
-        return RandomUtil.choice(keySet);
+        return RandomUtils.choice(keySet);
     }
 
     /**

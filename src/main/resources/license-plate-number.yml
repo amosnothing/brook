@@ -1,0 +1,968 @@
+---
+# 参考：https://zh.wikipedia.org/wiki/中华人民共和国民用机动车号牌
+# 摩托车 MOTOR,
+# 公交车 BUS,
+# 出租车 TAXI,
+# 外籍或者外籍公司车牌 FOREIGNER,
+# 临时号牌 TEMPORARY,
+# 国家机关：公安部等 GOVERNMENT, （注意：仅仅标明但不用于数据生成）
+# 常用车牌，非特殊作用，家庭/个人用 COMMON,
+# -----------------------------------------------------
+# 1，可能存在同一个字母多用途的情况
+# 2，电动车没有特别标示
+# 3，部分市分得比较详细，而部分省分得相对粗糙
+# 4，I/O一般不用 容易与 数字1 和 0混淆
+北京:
+  北京市:
+    MOTOR:
+      - 京A
+      - 京B
+    BUS:
+      - 京A
+    TAXI:
+      - 京B
+    FOREIGNER:
+      - 京A
+    TEMPORARY:
+      - 京R
+      - 京S
+      - 京T
+      - 京U
+      - 京W
+      - 京X
+      - 京Z
+    COMMON:
+      # 京D 京O 京V 机构用车
+      - 京A
+      - 京B
+      - 京C
+      - 京E
+      - 京F
+      - 京G
+      - 京H
+      - 京J
+      - 京K
+      - 京L
+      - 京M
+      - 京N
+      - 京P
+      - 京Q
+      - 京Y
+天津:
+  天津市:
+    BUS:
+      # A 部分用于机构
+      - 津A
+    TAXI:
+      - 津E
+    COMMON:
+      - 津B
+      - 津C
+      - 津D
+      - 津F
+      - 津G
+      - 津H
+      - 津J
+      - 津K
+      - 津L
+      - 津M
+      - 津N
+      - 津Q
+      - 津R
+河北省:
+  石家庄市:
+    COMMON:
+      - 冀A
+      - 冀M
+  唐山市:
+    COMMON:
+      - 冀B
+  秦皇岛市:
+    COMMON:
+      - 冀C
+  邯郸市:
+    COMMON:
+      - 冀D
+      - 冀K
+  邢台市:
+    COMMON:
+      - 冀E
+      - 冀L
+  保定市:
+    COMMON:
+      - 冀F
+      - 冀N
+  张家口市:
+    COMMON:
+      - 冀G
+      - 冀P
+  承德市:
+    COMMON:
+      - 冀H
+      - 冀Q
+  沧州市:
+    COMMON:
+      - 冀J
+      - 冀S
+  廊坊市:
+    COMMON: 冀R
+  衡水市:
+    COMMON: 冀T
+山西省:
+  太原市:
+    COMMON: 晋A
+  大同市:
+    COMMON: 晋B
+  阳泉市:
+    COMMON: 晋C
+  长治市:
+    COMMON: 晋D
+  晋城市:
+    COMMON: 晋E
+  朔州市:
+    COMMON: 晋F
+  晋中市:
+    COMMON: 晋K
+  运城市:
+    COMMON: 晋M
+  忻州市:
+    COMMON: 晋H
+  临汾市:
+    COMMON: 晋L
+  吕梁市:
+    COMMON: 晋J
+内蒙古自治区:
+  呼和浩特市:
+    COMMON: 蒙A
+  包头市:
+    COMMON: 蒙B
+  乌海市:
+    COMMON: 蒙C
+  赤峰市:
+    COMMON: 蒙D
+  通辽市:
+    COMMON: 蒙G
+  鄂尔多斯市:
+    COMMON: 蒙K
+  呼伦贝尔市:
+    COMMON: 蒙E
+  巴彦淖尔市:
+    COMMON: 蒙L
+  乌兰察布市:
+    COMMON: 蒙J
+  兴安盟:
+    COMMON: 蒙F
+  锡林郭勒盟:
+    COMMON: 蒙H
+  阿拉善盟:
+    COMMON: 蒙M
+辽宁省:
+  沈阳市:
+    COMMON: 辽A
+  大连市:
+    COMMON: 辽B
+  鞍山市:
+    COMMON: 辽C
+  抚顺市:
+    COMMON: 辽D
+  本溪市:
+    COMMON: 辽E
+  丹东市:
+    COMMON: 辽F
+  锦州市:
+    COMMON: 辽G
+  营口市:
+    COMMON: 辽H
+  阜新市:
+    COMMON: 辽J
+  辽阳市:
+    COMMON: 辽K
+  盘锦市:
+    COMMON: 辽L
+  铁岭市:
+    COMMON: 辽M
+  朝阳市:
+    COMMON: 辽N
+  葫芦岛市:
+    COMMON: 辽P
+吉林省:
+  #  K 长白山保护开发区 这个区暂时还不晓得归于那个市
+  #  而且区域代码没有包含这个地方 所以暂时省略
+  长春市:
+    COMMON: 吉A
+  吉林市:
+    COMMON: 吉B
+  四平市:
+    COMMON: 吉C
+  辽源市:
+    COMMON: 吉D
+  通化市:
+    COMMON: 吉E
+  白山市:
+    COMMON: 吉F
+  松原市:
+    COMMON: 吉J
+  白城市:
+    COMMON: 吉G
+  延边朝鲜族自治州:
+    COMMON: 吉H
+黑龙江省:
+  哈尔滨市:
+    # R 农垦系统
+    COMMON:
+      - 黑A
+      # L 松花江地区 已并入哈尔滨市
+      - 黑L
+  齐齐哈尔市:
+    COMMON: 黑B
+  牡丹江市:
+    COMMON: 黑C
+  佳木斯市:
+    COMMON: 黑D
+  大庆市:
+    COMMON: 黑E
+  伊春市:
+    COMMON: 黑F
+  鸡西市:
+    COMMON: 黑G
+  鹤岗市:
+    COMMON: 黑H
+  双鸭山市:
+    COMMON: 黑J
+  七台河市:
+    COMMON: 黑K
+  绥化市:
+    COMMON: 黑M
+  黑河市:
+    COMMON: 黑N
+  大兴安岭地区:
+    COMMON: 黑P
+上海:
+  上海市:
+    COMMON:
+      - 沪A
+      - 沪B
+      - 沪C
+      - 沪D
+      - 沪E
+      - 沪F
+      - 沪G
+      - 沪H
+      - 沪J
+      - 沪K
+      - 沪L
+      - 沪M
+      - 沪N
+江苏省:
+  南京市:
+    COMMON: 苏A
+  无锡市:
+    COMMON: 苏B
+  徐州市:
+    COMMON: 苏C
+  常州市:
+    COMMON: 苏D
+  苏州市:
+    COMMON:
+      - 苏E
+      - 苏U
+  南通市:
+    COMMON: 苏F
+  连云港市:
+    COMMON: 苏G
+  淮安市:
+    COMMON: 苏H
+  盐城市:
+    COMMON: 苏J
+  扬州市:
+    COMMON: 苏K
+  镇江市:
+    COMMON: 苏L
+  泰州市:
+    COMMON: 苏M
+  宿迁市:
+    COMMON: 苏N
+浙江省:
+  杭州市:
+    COMMON: 浙A
+  宁波市:
+    COMMON: 浙B
+  温州市:
+    COMMON: 浙C
+  嘉兴市:
+    COMMON: 浙F
+  湖州市:
+    COMMON: 浙E
+  绍兴市:
+    COMMON: 浙D
+  金华市:
+    COMMON: 浙G
+  衢州市:
+    COMMON: 浙H
+  舟山市:
+    COMMON: 浙L
+  台州市:
+    COMMON: 浙J
+  丽水市:
+    COMMON: 浙K
+安徽省:
+  # Q 原地级巢湖市
+  合肥市:
+    COMMON: 皖A
+  芜湖市:
+    COMMON: 皖B
+  蚌埠市:
+    COMMON: 皖C
+  淮南市:
+    COMMON: 皖D
+  马鞍山市:
+    COMMON: 皖E
+  淮北市:
+    COMMON: 皖F
+  铜陵市:
+    COMMON: 皖G
+  安庆市:
+    COMMON: 皖H
+  黄山市:
+    COMMON: 皖J
+  滁州市:
+    COMMON: 皖M
+  阜阳市:
+    COMMON: 皖K
+  宿州市:
+    COMMON: 皖L
+  六安市:
+    COMMON: 皖N
+  亳州市:
+    COMMON: 皖S
+  池州市:
+    COMMON: 皖R
+  宣城市:
+    COMMON: 皖P
+福建省:
+  福州市:
+    COMMON:
+      - 闽A
+      #  K 平潭综合实验区（平潭县） / 省直系统
+      #  平潭县 属于福州市
+      - 闽K
+  厦门市:
+    COMMON: 闽D
+  莆田市:
+    COMMON: 闽B
+  三明市:
+    COMMON: 闽G
+  泉州市:
+    COMMON: 闽C
+  漳州市:
+    COMMON: 闽E
+  南平市:
+    COMMON: 闽H
+  龙岩市:
+    COMMON: 闽F
+  宁德市:
+    COMMON: 闽J
+江西省:
+  南昌市:
+    COMMON:
+      - 赣A
+      # M 南昌市/省直系统
+      - 赣M
+  景德镇市:
+    COMMON: 赣H
+  萍乡市:
+    COMMON: 赣J
+  九江市:
+    COMMON: 赣G
+  新余市:
+    COMMON: 赣K
+  鹰潭市:
+    COMMON: 赣L
+  赣州市:
+    COMMON: 赣B
+  吉安市:
+    COMMON: 赣D
+  宜春市:
+    COMMON: 赣C
+  抚州市:
+    COMMON: 赣F
+  上饶市:
+    COMMON: 赣E
+山东省:
+  济南市:
+    COMMON: 鲁A
+  青岛市:
+    COMMON:
+      - 鲁B
+      - 鲁U
+  淄博市:
+    COMMON: 鲁C
+  枣庄市:
+    COMMON: 鲁D
+  东营市:
+    COMMON: 鲁E
+  烟台市:
+    COMMON:
+      - 鲁F
+      - 鲁Y
+  潍坊市:
+    COMMON:
+      - 鲁G
+      - 鲁V
+  济宁市:
+    COMMON: 鲁H
+  泰安市:
+    COMMON: 鲁J
+  威海市:
+    COMMON: 鲁K
+  日照市:
+    COMMON: 鲁L
+  莱芜市:
+    COMMON: 鲁S
+  临沂市:
+    COMMON: 鲁Q
+  德州市:
+    COMMON: 鲁N
+  聊城市:
+    COMMON: 鲁P
+  滨州市:
+    COMMON: 鲁M
+  菏泽市:
+    COMMON: 鲁R
+河南省:
+  郑州市:
+    COMMON:
+      - 豫A
+      - 豫V
+  开封市:
+    COMMON: 豫B
+  洛阳市:
+    COMMON: 豫C
+  平顶山市:
+    COMMON: 豫D
+  安阳市:
+    COMMON: 豫E
+  鹤壁市:
+    COMMON: 豫F
+  新乡市:
+    COMMON: 豫G
+  焦作市:
+    COMMON: 豫H
+  济源市:
+    COMMON: 豫U
+  濮阳市:
+    COMMON: 豫J
+  许昌市:
+    COMMON: 豫K
+  漯河市:
+    COMMON: 豫L
+  三门峡市:
+    COMMON: 豫M
+  南阳市:
+    COMMON: 豫R
+  商丘市:
+    COMMON: 豫N
+  信阳市:
+    COMMON: 豫S
+  周口市:
+    COMMON: 豫P
+  驻马店市:
+    COMMON: 豫Q
+湖北省:
+  武汉市:
+    COMMON: 鄂A
+    TAXI:
+      - 鄂AX
+      - 鄂AY
+  黄石市:
+    COMMON: 鄂B
+  十堰市:
+    COMMON: 鄂C
+  宜昌市:
+    COMMON: 鄂E
+  襄阳市:
+    COMMON: 鄂F
+  鄂州市:
+    COMMON: 鄂G
+  荆门市:
+    COMMON: 鄂H
+  孝感市:
+    COMMON: 鄂K
+  荆州市:
+    COMMON: 鄂D
+  黄冈市:
+    COMMON: 鄂J
+  咸宁市:
+    COMMON: 鄂L
+  随州市:
+    COMMON: 鄂S
+  恩施土家族苗族自治州:
+    COMMON: 鄂Q
+  仙桃市:
+    COMMON: 鄂M
+  潜江市:
+    COMMON: 鄂N
+  天门市:
+    COMMON: 鄂R
+  神农架林区:
+    COMMON: 鄂P
+湖南省:
+  长沙市:
+    COMMON: 湘A
+  株洲市:
+    COMMON: 湘B
+  湘潭市:
+    COMMON: 湘C
+  衡阳市:
+    COMMON: 湘D
+  邵阳市:
+    COMMON: 湘E
+  岳阳市:
+    COMMON: 湘F
+  常德市:
+    COMMON: 湘J
+  张家界市:
+    COMMON: 湘G
+  益阳市:
+    COMMON: 湘H
+  郴州市:
+    COMMON: 湘L
+  永州市:
+    COMMON: 湘M
+  怀化市:
+    COMMON: 湘N
+  娄底市:
+    COMMON: 湘K
+  湘西土家族苗族自治州:
+    COMMON: 湘U
+广东省:
+  广州市:
+    COMMON: 粤A
+  韶关市:
+    COMMON: 粤F
+  深圳市:
+    COMMON: 粤B
+  珠海市:
+    COMMON: 粤C
+  汕头市:
+    COMMON: 粤D
+  佛山市:
+    COMMON:
+      # X 佛山市顺德区（原顺德市，1999年因应佛山市公安局车管所顺德分所升格为顺德市公安局车管所开始发放，2018年2月1日起停止发放）
+      # Y 佛山市南海区（原南海市，2000年因应佛山市公安局车管所南海分所升格为南海市公安局车管所开始发放，2018年2月1日起停止发放）
+      - 粤E
+      - 粤X
+      - 粤Y
+  江门市:
+    COMMON: 粤J
+  湛江市:
+    COMMON: 粤G
+  茂名市:
+    COMMON: 粤K
+  肇庆市:
+    COMMON: 粤H
+  惠州市:
+    COMMON: 粤L
+  梅州市:
+    COMMON: 粤M
+  汕尾市:
+    COMMON: 粤N
+  河源市:
+    COMMON: 粤P
+  阳江市:
+    COMMON: 粤Q
+  清远市:
+    COMMON: 粤R
+  东莞市:
+    COMMON: 粤S
+  中山市:
+    COMMON: 粤T
+  潮州市:
+    COMMON: 粤U
+  揭阳市:
+    COMMON: 粤V
+  云浮市:
+    COMMON: 粤W
+广西壮族自治区:
+  南宁市:
+    COMMON: 桂A
+  柳州市:
+    COMMON: 桂B
+  桂林市:
+    COMMON:
+      - 桂C
+      - 桂H
+  梧州市:
+    COMMON: 桂D
+  北海市:
+    COMMON: 桂E
+  防城港市:
+    COMMON: 桂P
+  钦州市:
+    COMMON: 桂N
+  贵港市:
+    COMMON: 桂R
+  玉林市:
+    COMMON: 桂K
+  百色市:
+    COMMON: 桂L
+  贺州市:
+    COMMON: 桂J
+  河池市:
+    COMMON: 桂M
+  来宾市:
+    COMMON: 桂G
+  崇左市:
+    COMMON: 桂F
+海南省:
+  海口市:
+    COMMON: 琼A
+  三亚市:
+    COMMON: 琼B
+  三沙市:
+    COMMON: 琼CXS
+  儋州市:
+    COMMON: 琼F
+  琼海市:
+    COMMON: 琼C1
+  定安县:
+    COMMON: 琼C3
+  屯昌县:
+    COMMON: 琼C4
+  澄迈县:
+    COMMON: 琼C5
+  临高县:
+    COMMON: 琼C6
+  文昌市:
+    COMMON: 琼C7
+  万宁市:
+    COMMON: 琼C8
+  五指山市:
+    COMMON: 琼D0
+  陵水黎族自治县:
+    COMMON: 琼D1
+  保亭黎族苗族自治县:
+    COMMON: 琼D2
+  琼中黎族苗族自治县:
+    COMMON: 琼D3
+  白沙黎族自治县:
+    COMMON: 琼D4
+  昌江黎族自治县:
+    COMMON: 琼D5
+  东方市:
+    COMMON: 琼D6
+  乐东黎族自治县:
+    COMMON: 琼D7
+重庆:
+  重庆市:
+    COMMON:
+      - 渝A
+      - 渝B
+      - 渝C
+      - 渝D
+      - 渝F
+      - 渝G
+      - 渝H
+四川省:
+  成都市:
+    COMMON:
+      - 川A
+      - 川G
+  自贡市:
+    COMMON: 川C
+  攀枝花市:
+    COMMON: 川D
+  泸州市:
+    COMMON: 川E
+  德阳市:
+    COMMON: 川F
+  绵阳市:
+    COMMON: 川B
+  广元市:
+    COMMON: 川H
+  遂宁市:
+    COMMON: 川J
+  内江市:
+    COMMON: 川K
+  乐山市:
+    COMMON: 川L
+  南充市:
+    COMMON: 川R
+  眉山市:
+    COMMON: 川Z
+  宜宾市:
+    COMMON: 川Q
+  广安市:
+    COMMON: 川X
+  达州市:
+    COMMON: 川S
+  雅安市:
+    COMMON: 川T
+  巴中市:
+    COMMON: 川Y
+  资阳市:
+    COMMON: 川M
+  阿坝藏族羌族自治州:
+    COMMON: 川U
+  甘孜藏族自治州:
+    COMMON: 川V
+  凉山彝族自治州:
+    COMMON: 川W
+贵州省:
+  贵阳市:
+    COMMON: 贵A
+  六盘水市:
+    COMMON: 贵B
+  遵义市:
+    COMMON: 贵C
+  安顺市:
+    COMMON: 贵G
+  铜仁市:
+    COMMON: 贵D
+  黔西南布依族苗族自治州:
+    COMMON: 贵H
+  毕节市:
+    COMMON: 贵F
+  黔东南苗族侗族自治州:
+    COMMON: 贵H
+  黔南布依族苗族自治州:
+    COMMON: 贵J
+云南省:
+  昆明市:
+    COMMON: 云A
+  曲靖市:
+    COMMON: 云D
+  玉溪市:
+    COMMON: 云F
+  保山市:
+    COMMON: 云M
+  昭通市:
+    COMMON: 云C
+  丽江市:
+    COMMON: 云P
+  普洱市:
+    COMMON: 云J
+  临沧市:
+    COMMON: 云S
+  楚雄彝族自治州:
+    COMMON: 云E
+  红河哈尼族彝族自治州:
+    COMMON: 云G
+  文山壮族苗族自治州:
+    COMMON: 云H
+  西双版纳傣族自治州:
+    COMMON: 云K
+  大理白族自治州:
+    COMMON: 云L
+  德宏傣族景颇族自治州:
+    COMMON: 云N
+  怒江傈僳族自治州:
+    COMMON: 云Q
+  迪庆藏族自治州:
+    COMMON: 云R
+西藏自治区:
+  拉萨市:
+    COMMON: 藏A
+  昌都市:
+    COMMON: 藏B
+  山南市:
+    COMMON: 藏C
+  日喀则市:
+    COMMON: 藏D
+  那曲市:
+    COMMON: 藏E
+  阿里地区:
+    COMMON: 藏F
+  林芝市:
+    COMMON: 藏G
+陕西省:
+  西安市:
+    COMMON:
+      - 陕A
+      - 陕U
+    TAXI:
+      - 陕AT
+      - 陕AU
+    BUS:
+      - 陕AY
+  铜川市:
+    COMMON: 陕B
+  宝鸡市:
+    COMMON: 陕C
+  咸阳市:
+    COMMON:
+      - 陕D
+      - 陕V
+  渭南市:
+    COMMON: 陕E
+  延安市:
+    COMMON: 陕J
+  汉中市:
+    COMMON: 陕F
+  榆林市:
+    COMMON: 陕K
+  安康市:
+    COMMON: 陕G
+  商洛市:
+    COMMON: 陕H
+甘肃省:
+  兰州市:
+    COMMON: 甘A
+  嘉峪关市:
+    COMMON: 甘B
+  金昌市:
+    COMMON: 甘C
+  白银市:
+    COMMON: 甘D
+  天水市:
+    COMMON: 甘E
+  武威市:
+    COMMON: 甘H
+  张掖市:
+    COMMON: 甘G
+  平凉市:
+    COMMON: 甘L
+  酒泉市:
+    COMMON: 甘F
+  庆阳市:
+    COMMON: 甘M
+  定西市:
+    COMMON: 甘J
+  陇南市:
+    COMMON: 甘K
+  临夏回族自治州:
+    COMMON: 甘N
+  甘南藏族自治州:
+    COMMON: 甘P
+青海省:
+  西宁市:
+    COMMON: 青A
+  海东市:
+    COMMON: 青B
+  海北藏族自治州:
+    COMMON: 青C
+  黄南藏族自治州:
+    COMMON: 青D
+  海南藏族自治州:
+    COMMON: 青E
+  果洛藏族自治州:
+    COMMON: 青F
+  玉树藏族自治州:
+    COMMON: 青G
+  海西蒙古族藏族自治州:
+    COMMON: 青H
+宁夏回族自治区:
+  银川市:
+    COMMON: 宁A
+  石嘴山市:
+    COMMON: 宁B
+  吴忠市:
+    COMMON: 宁C
+  固原市:
+    COMMON: 宁D
+  中卫市:
+    COMMON: 宁E
+新疆维吾尔自治区:
+  乌鲁木齐市:
+    COMMON: 新A
+  昌吉回族自治州:
+    COMMON: 新B
+  五家渠市:
+    COMMON: 新B
+  石河子市:
+    COMMON: 新C
+  伊犁哈萨克自治州:
+    COMMON: 新D
+  克拉玛依市:
+    COMMON: 新J
+  吐鲁番市:
+    COMMON: 新K
+  哈密市:
+    COMMON: 新L
+  博尔塔拉蒙古自治州:
+    COMMON: 新E
+  巴音郭楞蒙古自治州:
+    COMMON: 新M
+  阿克苏地区:
+    COMMON: 新N
+  克孜勒苏柯尔克孜自治州:
+    COMMON: 新P
+  喀什地区:
+    COMMON: 新Q
+  和田地区:
+    COMMON: 新R
+  塔城地区:
+    COMMON: 新G
+  阿勒泰地区:
+    COMMON: 新H
+  可克达拉市:
+    COMMON: 新F
+  阿拉尔市:
+    COMMON: 新N
+  图木舒克市:
+    COMMON: 新Q
+  北屯市:
+    COMMON: 新H
+  铁门关市:
+    COMMON: 新M
+  双河市:
+    COMMON: 新E
+  昆玉市:
+    COMMON: 新S
+台湾:
+  台北市:
+    COMMON: 闽Z
+  高雄市:
+    COMMON: 闽Z
+  台南市:
+    COMMON: 闽Z
+  台中市:
+    COMMON: 闽Z
+  金门县:
+    COMMON: 闽Z
+  南投县:
+    COMMON: 闽Z
+  基隆市:
+    COMMON: 闽Z
+  新竹市:
+    COMMON: 闽Z
+  嘉义市:
+    COMMON: 闽Z
+  新北市:
+    COMMON: 闽Z
+  宜兰县:
+    COMMON: 闽Z
+  新竹县:
+    COMMON: 闽Z
+  桃园市:
+    COMMON: 闽Z
+  苗栗县:
+    COMMON: 闽Z
+  彰化县:
+    COMMON: 闽Z
+  嘉义县:
+    COMMON: 闽Z
+  云林县:
+    COMMON: 闽Z
+  屏东县:
+    COMMON: 闽Z
+  台东县:
+    COMMON: 闽Z
+  花莲县:
+    COMMON: 闽Z
+  澎湖县:
+    COMMON: 闽Z
+  连江县:
+    COMMON: 闽Z
+香港特别行政区:
+  香港岛:
+    COMMON: 粤Z
+  九龙:
+    COMMON: 粤Z
+  新界:
+    COMMON: 粤Z
+澳门特别行政区:
+  澳门半岛:
+    COMMON: 粤Z
+  离岛:
+    COMMON: 粤Z

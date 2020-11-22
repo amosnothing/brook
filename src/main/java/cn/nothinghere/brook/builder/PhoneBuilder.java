@@ -4,9 +4,9 @@ package cn.nothinghere.brook.builder;
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
-import cn.nothinghere.brook.util.RandomStringUtil;
-import cn.nothinghere.brook.util.RandomUtil;
-import cn.nothinghere.brook.util.YamlUtil;
+import cn.nothinghere.brook.util.RandomStringUtils;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Operator;
 
 import java.io.Serializable;
@@ -32,7 +32,7 @@ public final class PhoneBuilder implements Builder {
     @Override
     public String build() {
         this.mac.randomIfNull();
-        return this.mac.asString() + RandomStringUtil.numeric(8);
+        return this.mac.asString() + RandomStringUtils.numeric(8);
     }
 
     public static class Mac implements Field, Randomize, Serializable {
@@ -42,7 +42,7 @@ public final class PhoneBuilder implements Builder {
         private static final Map<String, List<Integer>> MAC_MAP;
 
         static {
-            MAC_MAP = YamlUtil.load("mac.yml");
+            MAC_MAP = YamlUtils.load("mac.yml");
         }
 
         private Operator operator;
@@ -59,13 +59,13 @@ public final class PhoneBuilder implements Builder {
         public String asString() {
             String opName = this.operator.name().toLowerCase();
             List<Integer> list = MAC_MAP.get(opName);
-            return RandomUtil.choice(list).toString();
+            return RandomUtils.choice(list).toString();
         }
 
         @Override
         public void randomIfNull() {
             if (null == operator) {
-                this.operator = RandomUtil.choice(Operator.values());
+                this.operator = RandomUtils.choice(Operator.values());
             }
         }
     }

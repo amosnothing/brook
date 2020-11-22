@@ -2,8 +2,8 @@ package cn.nothinghere.brook.value;
 
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
-import cn.nothinghere.brook.util.RandomUtil;
-import cn.nothinghere.brook.util.YamlUtil;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.util.YamlUtils;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -86,7 +86,7 @@ public class Name implements Field, Randomize, Serializable {
     private static final Map<String, Integer> FIRST_NAME_UNKNOWN_LEN1_MAP;
 
     static {
-        NAME_MAP = Collections.unmodifiableMap(YamlUtil.load("name.yml"));
+        NAME_MAP = Collections.unmodifiableMap(YamlUtils.load("name.yml"));
         LAST_NAME_MAP = Collections.unmodifiableMap((Map<String, Integer>) NAME_MAP.get("last_name"));
         FIRST_NAME_MAP = Collections.unmodifiableMap((Map<String, Object>) NAME_MAP.get("first_name"));
         FIRST_NAME_MALE_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("male"));
@@ -144,26 +144,26 @@ public class Name implements Field, Randomize, Serializable {
         int firstNameLength;
         // 姓氏随机
         if (this.length == MAX_LENGTH) {
-            lastName = RandomUtil.choice(LAST_NAME_LEN2_MAP);
+            lastName = RandomUtils.choice(LAST_NAME_LEN2_MAP);
             firstNameLength = 2;
         } else {
-            lastName = RandomUtil.choice(LAST_NAME_LEN1_MAP);
+            lastName = RandomUtils.choice(LAST_NAME_LEN1_MAP);
             firstNameLength = this.length - 1;
         }
 
         String firstName;
         switch (this.getGender()) {
             case FEMALE:
-                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_FEMALE_LEN2_MAP)
-                        : RandomUtil.choice(FIRST_NAME_FEMALE_LEN1_MAP);
+                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_FEMALE_LEN2_MAP)
+                        : RandomUtils.choice(FIRST_NAME_FEMALE_LEN1_MAP);
                 break;
             case MALE:
-                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_MALE_LEN2_MAP)
-                        : RandomUtil.choice(FIRST_NAME_MALE_LEN1_MAP);
+                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_MALE_LEN2_MAP)
+                        : RandomUtils.choice(FIRST_NAME_MALE_LEN1_MAP);
                 break;
             default:
-                firstName = firstNameLength == 2 ? RandomUtil.choice(FIRST_NAME_UNKNOWN_LEN2_MAP)
-                        : RandomUtil.choice(FIRST_NAME_UNKNOWN_LEN1_MAP);
+                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_UNKNOWN_LEN2_MAP)
+                        : RandomUtils.choice(FIRST_NAME_UNKNOWN_LEN1_MAP);
         }
         return lastName + firstName;
     }

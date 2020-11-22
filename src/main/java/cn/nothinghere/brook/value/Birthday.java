@@ -2,7 +2,7 @@ package cn.nothinghere.brook.value;
 
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
-import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.util.RandomUtils;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -69,7 +69,7 @@ public class Birthday implements Field, Randomize, Serializable {
     private static LocalDate randomDate(LocalDate startInclude, LocalDate endExclude) {
         long interval = DAYS.between(startInclude, endExclude);
         // 一般而言，传入的年龄相差不会超过int的最大值
-        return startInclude.plusDays(RandomUtil.nextInt((int) interval));
+        return startInclude.plusDays(RandomUtils.nextInt((int) interval));
     }
 
     @Override

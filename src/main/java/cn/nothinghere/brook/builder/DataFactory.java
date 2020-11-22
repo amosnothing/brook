@@ -33,6 +33,10 @@ public final class DataFactory {
         return new CompanyBuilder();
     }
 
+    public static LicensePlateBuilder licensePlateBuilder() {
+        return new LicensePlateBuilder();
+    }
+
     private DataFactory() {
     }
 }

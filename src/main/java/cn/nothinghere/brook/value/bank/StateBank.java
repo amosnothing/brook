@@ -1,4 +1,4 @@
-package cn.nothinghere.brook.value;
+package cn.nothinghere.brook.value.bank;
 
 /**
  * @author amos.chenj@outlook.com

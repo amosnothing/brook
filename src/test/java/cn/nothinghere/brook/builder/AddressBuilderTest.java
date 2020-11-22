@@ -1,18 +1,17 @@
 package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.brook.region.Province;
+import cn.nothinghere.brook.value.region.Province;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AddressBuilderTest {
+public class AddressBuilderTest extends BaseTest{
 
     private String address = null;
-    private final int loop = 10000;
 
     @Test
     public void testWithProvince() {
-        for (int i = 0; i < loop; i++) {
+        for (int i = 0; i < LOOP; i++) {
             String beijing = "北京";
             address = DataFactory.addressBuilder().withProvince(beijing).build();
             assertThat(address).startsWith(beijing);
@@ -27,7 +26,7 @@ public class AddressBuilderTest {
 
     @Test
     public void testWithProvince1() {
-        for (int i = 0; i < loop; i++) {
+        for (int i = 0; i < LOOP; i++) {
             Province beijing = Province.BEIJING;
             address = DataFactory.addressBuilder().withProvince(beijing).build();
             assertThat(address).startsWith(beijing.getName());
@@ -42,7 +41,7 @@ public class AddressBuilderTest {
 
     @Test
     public void testWithCity() {
-        for (int i = 0; i < loop; i++) {
+        for (int i = 0; i < LOOP; i++) {
             Province beijing = Province.BEIJING;
             address = DataFactory.addressBuilder().withProvince(beijing)
                     .withCity("北京市").build();

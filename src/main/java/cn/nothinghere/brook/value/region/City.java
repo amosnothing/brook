@@ -1,6 +1,6 @@
-package cn.nothinghere.brook.region;
+package cn.nothinghere.brook.value.region;
 
-import static cn.nothinghere.brook.region.Province.*;
+import static cn.nothinghere.brook.value.region.Province.*;
 
 /**
  * @author amos.chenj@outlook.com
@@ -246,7 +246,6 @@ public enum City implements Region{
     QINGYUAN(GUANGDONG,"清远市"),
     DONGGUAN(GUANGDONG,"东莞市"),
     ZHONGSHAN(GUANGDONG,"中山市"),
-    DONGSHAQUNDAO(GUANGDONG,"东沙群岛"),
     CHAOZHOU(GUANGDONG,"潮州市"),
     JIEYANG(GUANGDONG,"揭阳市"),
     YUNFU(GUANGDONG,"云浮市"),
@@ -285,9 +284,6 @@ public enum City implements Region{
     LINGSHUILIZU(HAINAN,"陵水黎族自治县"),
     BAOTINGLIZUMIAOZU(HAINAN,"保亭黎族苗族自治县"),
     QIONGZHONGLIZUMIAOZU(HAINAN,"琼中黎族苗族自治县"),
-    XISHAQUNDAO(HAINAN,"西沙群岛"),
-    NANSHAQUNDAO(HAINAN,"南沙群岛"),
-    ZHONGSHAQUNDAO(HAINAN,"中沙群岛的岛礁及其海域"),
 
     CHENGDOU(SICHUAN,"成都市"),
     ZIGONG(SICHUAN,"自贡市"),

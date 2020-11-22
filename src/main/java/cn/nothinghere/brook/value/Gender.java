@@ -1,7 +1,7 @@
 package cn.nothinghere.brook.value;
 
 import cn.nothinghere.brook.Value;
-import cn.nothinghere.brook.util.RandomUtil;
+import cn.nothinghere.brook.util.RandomUtils;
 
 
 /**
@@ -55,11 +55,11 @@ public enum Gender implements Value<Integer> {
         int bound = 10;
         switch (this) {
             case MALE:
-                return RandomUtil.odd(bound);
+                return RandomUtils.odd(bound);
             case FEMALE:
-                return RandomUtil.even(bound);
+                return RandomUtils.even(bound);
             default:
-                return RandomUtil.nextInt(bound);
+                return RandomUtils.nextInt(bound);
         }
     }
 }

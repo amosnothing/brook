@@ -12,7 +12,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  *
  * @author amos.chenj@outlook.com
  */
-public class PinyinUtil {
+public class PinyinUtils {
 
     public static String toPinyin(String chineseOrEnglish) {
         StringBuilder pinyinStr = new StringBuilder();
@@ -35,6 +35,6 @@ public class PinyinUtil {
         return pinyinStr.toString();
     }
 
-    private PinyinUtil() {
+    private PinyinUtils() {
     }
 }

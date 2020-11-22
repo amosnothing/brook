@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * @author amos.chenj@outlook.com
  */
-public final class RandomStringUtil {
-    private RandomStringUtil() {
+public final class RandomStringUtils {
+    private RandomStringUtils() {
     }
 
     public static String numeric(int count) {
@@ -42,7 +42,7 @@ public final class RandomStringUtil {
         }
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            builder.append(RandomUtil.choice(chars));
+            builder.append(RandomUtils.choice(chars));
         }
         return builder.toString();
     }

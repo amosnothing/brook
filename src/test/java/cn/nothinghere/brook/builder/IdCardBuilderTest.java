@@ -1,8 +1,8 @@
 package cn.nothinghere.brook.builder;
 
 
-import cn.nothinghere.brook.region.City;
-import cn.nothinghere.brook.region.Province;
+import cn.nothinghere.brook.value.region.City;
+import cn.nothinghere.brook.value.region.Province;
 import cn.nothinghere.brook.value.Gender;
 import org.testng.annotations.Test;
 
@@ -31,11 +31,18 @@ public class IdCardBuilderTest {
 
         for (int i = 0; i < loop; i++) {
             idCard = DataFactory.idCardBuilder().withProvince(ANHUI).build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
             idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING).build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
+            assertThat(idCard).matches("\\d{17}[X\\d]");
+
+        }
+        Province[] provinces = Province.values();
+        for (Province province : provinces) {
+            DataFactory.idCardBuilder().withProvince(province).build();
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
     }
@@ -46,12 +53,19 @@ public class IdCardBuilderTest {
             idCard = DataFactory.idCardBuilder().withProvince(HEBEI)
                     .withCity(HEBEI_SHIJIAZHUANG)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
             idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING)
                     .withCity(City.BEIJING)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
+            assertThat(idCard).matches("\\d{17}[X\\d]");
+        }
+
+        City[] cities = City.values();
+        for (City city : cities) {
+            DataFactory.idCardBuilder().withCity(city).build();
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
     }
@@ -64,7 +78,7 @@ public class IdCardBuilderTest {
                     .withCity(HEBEI_SHIJIAZHUANG)
                     .withDistrict(HEBEI_SHIJIAZHUANG_ZHANGANQU)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
             idCard = DataFactory.idCardBuilder()
@@ -72,7 +86,7 @@ public class IdCardBuilderTest {
                     .withCity(City.GUANGZHOU)
                     .withDistrict("天河区")
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
         }
@@ -86,7 +100,7 @@ public class IdCardBuilderTest {
                     .withDistrict(SHANXI_TAIYUAN_XIAODIANQU)
                     .withAge(20)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
     }
@@ -103,7 +117,7 @@ public class IdCardBuilderTest {
                     .withAge(18, 31)
                     .withGender(Gender.FEMALE)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
 
             idCard = DataFactory.idCardBuilder()
@@ -113,7 +127,7 @@ public class IdCardBuilderTest {
                     .withAge(21, 38)
                     .withGender(Gender.FEMALE.getName())
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
     }
@@ -128,7 +142,7 @@ public class IdCardBuilderTest {
                     .withDistrict(HEBEI_SHIJIAZHUANG_ZHANGANQU)
                     .withAge(18, 31)
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
     }
@@ -142,7 +156,7 @@ public class IdCardBuilderTest {
                     .withDistrict(HEBEI_SHIJIAZHUANG_ZHANGANQU)
                     .withBirthday("19880123")
                     .build();
-            assertThat(idCard.length()).isEqualTo(18);
+            assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
 

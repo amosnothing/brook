@@ -1,4 +1,4 @@
-package cn.nothinghere.brook.region;
+package cn.nothinghere.brook.value.region;
 
 /**
  * @author amos.chenj@outlook.com

@@ -1,9 +1,9 @@
 package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.region.City;
-import cn.nothinghere.brook.region.Province;
-import cn.nothinghere.brook.value.Area;
+import cn.nothinghere.brook.value.region.City;
+import cn.nothinghere.brook.value.region.Province;
+import cn.nothinghere.brook.value.region.Area;
 
 import java.util.Objects;
 
@@ -51,7 +51,6 @@ public final class AddressBuilder implements Builder {
     @Override
     public String build() {
         area.verify();
-        area.randomIfNull();
         return area.asString();
     }
 }

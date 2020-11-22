@@ -6,7 +6,7 @@ package cn.nothinghere.brook;
 public interface Verifiable {
 
     /**
-     * 参数校验
+     * 每一个继承该类的子类都需要实现自己的参数校验方法
      */
     void verify();
 }

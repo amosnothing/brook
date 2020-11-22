@@ -3,9 +3,9 @@ package cn.nothinghere.brook.builder;
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
-import cn.nothinghere.brook.util.PinyinUtil;
-import cn.nothinghere.brook.util.RandomUtil;
-import cn.nothinghere.brook.util.YamlUtil;
+import cn.nothinghere.brook.util.PinyinUtils;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Name;
 
 import java.io.Serializable;
@@ -40,7 +40,7 @@ public final class EmailBuilder implements Builder {
             nameChinese = name.asString();
         }
         domain.randomIfNull();
-        return PinyinUtil.toPinyin(nameChinese) + '@' + domain.asString();
+        return PinyinUtils.toPinyin(nameChinese) + '@' + domain.asString();
     }
 
     public static class Domain implements Field, Serializable, Randomize {
@@ -50,7 +50,7 @@ public final class EmailBuilder implements Builder {
         private static final long serialVersionUID = -4467242699676921562L;
 
         static {
-            MAP = YamlUtil.load("email.yml");
+            MAP = YamlUtils.load("email.yml");
             DOMAIN_LIST = MAP.get("domain");
         }
 
@@ -67,7 +67,7 @@ public final class EmailBuilder implements Builder {
         @Override
         public void randomIfNull() {
             if (null == data) {
-                setData(RandomUtil.choice(DOMAIN_LIST));
+                setData(RandomUtils.choice(DOMAIN_LIST));
             }
         }
 

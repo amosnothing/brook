@@ -1,8 +1,9 @@
 package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.value.Bank;
-import cn.nothinghere.brook.value.Bin;
+import cn.nothinghere.brook.value.bank.Bank;
+import cn.nothinghere.brook.value.bank.BankCardType;
+import cn.nothinghere.brook.value.bank.Bin;
 
 import java.util.Objects;
 
@@ -23,9 +24,14 @@ public final class BankCardBuilder implements Builder {
         return this;
     }
 
-    public BankCardBuilder withType(Bin.CardType cardType) {
+    public BankCardBuilder withType(BankCardType cardType) {
         Objects.requireNonNull(cardType);
         bin.setType(cardType);
+        return this;
+    }
+
+    public BankCardBuilder withLength(int length) {
+        bin.setLength(length);
         return this;
     }
 
@@ -56,6 +62,7 @@ public final class BankCardBuilder implements Builder {
 
     @Override
     public String build() {
+        bin.verify();
         String uncheckCode = bin.asString();
         return uncheckCode + buildCheckCode(uncheckCode);
     }

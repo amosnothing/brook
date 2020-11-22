@@ -3,8 +3,8 @@ package cn.nothinghere.brook.builder;
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
-import cn.nothinghere.brook.util.RandomUtil;
-import cn.nothinghere.brook.util.YamlUtil;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Country;
 
 import java.io.Serializable;
@@ -68,7 +68,7 @@ public class CompanyBuilder implements Builder {
         }
 
         static {
-            MAP = YamlUtil.load("company.yml");
+            MAP = YamlUtils.load("company.yml");
         }
 
         @Override
@@ -80,10 +80,10 @@ public class CompanyBuilder implements Builder {
         public void randomIfNull() {
             // 国家随机
             if (country == null) {
-                country = RandomUtil.choice(Country.values());
+                country = RandomUtils.choice(Country.values());
             }
             // 从国家所属公司列表中随机选一个
-            this.name = RandomUtil.choice(MAP.get(this.country.getShortName()));
+            this.name = RandomUtils.choice(MAP.get(this.country.getShortName()));
         }
     }
 }

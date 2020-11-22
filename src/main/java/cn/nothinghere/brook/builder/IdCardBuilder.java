@@ -1,10 +1,10 @@
 package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.region.City;
-import cn.nothinghere.brook.region.Province;
-import cn.nothinghere.brook.util.RandomUtil;
-import cn.nothinghere.brook.value.Area;
+import cn.nothinghere.brook.value.region.City;
+import cn.nothinghere.brook.value.region.Province;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.value.region.Area;
 import cn.nothinghere.brook.value.Birthday;
 import cn.nothinghere.brook.value.Gender;
 
@@ -76,7 +76,7 @@ public final class IdCardBuilder implements Builder {
     }
 
     /**
-     * @param birth 必须满足 ： yyyyMMDD
+     * @param birth 必须满足 ： yyyyMMdd
      * @return IdCardBuilder
      */
     public IdCardBuilder withBirthday(final String birth) {
@@ -107,7 +107,7 @@ public final class IdCardBuilder implements Builder {
      * @return 身份证序号
      */
     private static String serialNo() {
-        int no = RandomUtil.nextInt(1, 100);
+        int no = RandomUtils.nextInt(1, 100);
         String noStr = String.valueOf(no);
         return noStr.length() == 2 ? noStr : 0 + noStr;
     }
@@ -132,7 +132,6 @@ public final class IdCardBuilder implements Builder {
     @Override
     public String build() {
         this.area.verify();
-        this.area.randomIfNull();
         String areaCode = this.area.asCode();
         this.birthday.randomIfNull();
         String birth = this.birthday.asString();
