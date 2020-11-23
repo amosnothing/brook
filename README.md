@@ -5,7 +5,7 @@ pom中加入依赖:
 <dependency>
   <groupId>cn.nothinghere</groupId>
   <artifactId>brook</artifactId>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
 </dependency>
 ```
 
