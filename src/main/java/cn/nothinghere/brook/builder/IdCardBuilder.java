@@ -5,14 +5,14 @@ import cn.nothinghere.brook.value.region.City;
 import cn.nothinghere.brook.value.region.Province;
 import cn.nothinghere.brook.util.RandomUtils;
 import cn.nothinghere.brook.value.region.Area;
-import cn.nothinghere.brook.value.Birthday;
-import cn.nothinghere.brook.value.Gender;
+import cn.nothinghere.brook.value.human.Birthday;
+import cn.nothinghere.brook.value.human.Gender;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
-import static cn.nothinghere.brook.value.Birthday.choiceByAge;
+import static cn.nothinghere.brook.value.human.Birthday.choiceByAge;
 
 /**
  * @author amos.chenj@outlook.com

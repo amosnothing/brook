@@ -1,4 +1,4 @@
-package cn.nothinghere.brook.value;
+package cn.nothinghere.brook.value.human;
 
 import cn.nothinghere.brook.Value;
 import cn.nothinghere.brook.util.RandomUtils;

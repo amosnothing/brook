@@ -1,6 +1,6 @@
 package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.brook.value.Gender;
+import cn.nothinghere.brook.value.human.Gender;
 import org.testng.annotations.Test;
 
 import java.security.SecureRandom;

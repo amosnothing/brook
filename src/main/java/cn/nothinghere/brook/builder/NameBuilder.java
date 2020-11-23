@@ -2,8 +2,8 @@ package cn.nothinghere.brook.builder;
 
 
 import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.value.Gender;
-import cn.nothinghere.brook.value.Name;
+import cn.nothinghere.brook.value.human.Gender;
+import cn.nothinghere.brook.value.human.Name;
 
 /**
  * 名字素材来源: 见name.yml

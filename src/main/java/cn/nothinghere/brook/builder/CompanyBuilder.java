@@ -8,6 +8,7 @@ import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Country;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -68,7 +69,7 @@ public class CompanyBuilder implements Builder {
         }
 
         static {
-            MAP = YamlUtils.load("company.yml");
+            MAP = Collections.unmodifiableMap(YamlUtils.load("company.yml"));
         }
 
         @Override

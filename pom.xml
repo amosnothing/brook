@@ -37,7 +37,7 @@
 
     <groupId>cn.nothinghere</groupId>
     <artifactId>brook</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

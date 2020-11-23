@@ -38,8 +38,8 @@ public final class BankCardBuilder implements Builder {
     /**
      * 生成最后一位校验码
      *
-     * @param nonCheckCode
-     * @return
+     * @param nonCheckCode 未添加最后一位校验码的银行卡
+     * @return 校验码：luhm算法生成
      */
     private static char buildCheckCode(String nonCheckCode) {
         if (nonCheckCode == null || nonCheckCode.trim().length() == 0

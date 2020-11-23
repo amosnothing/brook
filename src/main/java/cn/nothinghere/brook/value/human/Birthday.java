@@ -1,4 +1,4 @@
-package cn.nothinghere.brook.value;
+package cn.nothinghere.brook.value.human;
 
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;

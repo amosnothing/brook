@@ -3,7 +3,7 @@ package cn.nothinghere.brook.builder;
 
 import cn.nothinghere.brook.value.region.City;
 import cn.nothinghere.brook.value.region.Province;
-import cn.nothinghere.brook.value.Gender;
+import cn.nothinghere.brook.value.human.Gender;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

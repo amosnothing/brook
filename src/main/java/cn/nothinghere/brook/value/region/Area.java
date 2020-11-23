@@ -66,6 +66,10 @@ public class Area  implements Value<String>, Serializable, Verifiable {
 
     }
 
+    /**
+     * 根据json-path获取到的多层级key，带有一些特殊符号需要去掉
+     * @return 地区名
+     */
     @Override
     public String asString() {
         return kvHolder.getKey()

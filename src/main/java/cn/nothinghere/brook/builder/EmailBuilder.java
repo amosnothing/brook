@@ -6,7 +6,7 @@ import cn.nothinghere.brook.Randomize;
 import cn.nothinghere.brook.util.PinyinUtils;
 import cn.nothinghere.brook.util.RandomUtils;
 import cn.nothinghere.brook.util.YamlUtils;
-import cn.nothinghere.brook.value.Name;
+import cn.nothinghere.brook.value.human.Name;
 
 import java.io.Serializable;
 import java.util.List;

@@ -37,6 +37,10 @@ public final class DataFactory {
         return new LicensePlateBuilder();
     }
 
+    public static OccupationBuilder occupationBuilder() {
+        return new OccupationBuilder();
+    }
+
     private DataFactory() {
     }
 }
