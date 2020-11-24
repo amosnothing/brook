@@ -33,10 +33,12 @@ public final class RandomUtils {
         return weightMap.get(tailMap.firstKey());
     }
 
+
     /**
      * 集合随机取值
      *
      * @param tList 集合
+     * @param count 被选中的元素个数
      * @param <T>   集合类型
      * @return 集合当中随机的某几个数值
      */
@@ -65,8 +67,9 @@ public final class RandomUtils {
     /**
      * 集合随机取值
      *
-     * @param tSet 集合
-     * @param <T>  集合类型
+     * @param tSet  集合
+     * @param count 被选中的元素个数
+     * @param <T>   集合类型
      * @return 集合当中随机的某几个数值
      */
     public static <T> Set<T> choice(Set<T> tSet, int count) {
@@ -96,6 +99,7 @@ public final class RandomUtils {
      * 数组随机取值
      *
      * @param tArray 数据
+     * @param count  被选中的元素个数
      * @param <T>    数组类型
      * @return 数组当中随机的某几个数值
      */

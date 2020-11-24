@@ -8,20 +8,28 @@ import java.util.Arrays;
 public final class RandomStringUtils {
     private RandomStringUtils() {
     }
-
+    /**
+     *  根据字符个数生成数字字符
+     * @param count  字符位数
+     * @return 随机数字
+     */
     public static String numeric(int count) {
         return random(count, false, true);
     }
 
     /**
-     * 字符数字混合
-     *
-     * @return
+     * 字母数字混合
+     * @param count  字符位数
+     * @return 随机字母数字混合
      */
     public static String alphanumeric(int count) {
         return random(count, true, true);
     }
-
+    /**
+     *  根据字符个数生成字母字符
+     * @param count  字符位数
+     * @return 随机数字
+     */
     public static String alphabetic(int count) {
         return random(count, true, false);
     }
