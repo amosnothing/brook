@@ -10,8 +10,9 @@ pom中加入依赖:
   <version>${lastVersion}</version>
 </dependency>
 ```
+最新版本：注意版本号前面无需加`v`，比如`0.0.1`即可：
 
-最新版本见：![v](https://img.shields.io/maven-central/v/cn.nothinghere/brook)
+![v](https://img.shields.io/maven-central/v/cn.nothinghere/brook)
 
 ## 身份证号码生成
 
