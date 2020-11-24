@@ -29,8 +29,18 @@ public final class LicensePlateBuilder implements Builder {
         return this;
     }
 
+    public LicensePlateBuilder withProvince(String province) {
+        plate.setProvince(province);
+        return this;
+    }
+
     public LicensePlateBuilder withCity(City city) {
         plate.setCity(city.getName());
+        return this;
+    }
+
+    public LicensePlateBuilder withCity(String city) {
+        plate.setCity(city);
         return this;
     }
 

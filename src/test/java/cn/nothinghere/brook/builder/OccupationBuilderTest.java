@@ -8,10 +8,8 @@ public class OccupationBuilderTest extends BaseTest {
 
     @Test
     public void testBuild() {
-
         for (int i = 0; i < LOOP; i++) {
             String build = DataFactory.occupationBuilder().build();
-            System.out.println(build);
             Assertions.assertThat(build).isNotNull();
         }
     }
@@ -23,7 +21,6 @@ public class OccupationBuilderTest extends BaseTest {
                 String build = DataFactory.occupationBuilder()
                         .withType(majorType)
                         .build();
-                System.out.println(build);
                 Assertions.assertThat(build).isNotNull();
             }
         }

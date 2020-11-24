@@ -1,5 +1,9 @@
 package cn.nothinghere.brook.value.region;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import static cn.nothinghere.brook.value.region.Province.*;
 
 /**
@@ -437,15 +441,31 @@ public enum City implements Region{
     PENINSULAOFMACAO(MACAO,"澳门半岛"),
     LIDAO(MACAO,"离岛"),
     ;
-    private Province parent;
-    private String name;
+    private final Province parent;
+    private final String name;
 
     City(Province parent, String name) {
         this.parent = parent;
         this.name = name;
     }
 
+    public static City[] getByParent(Province parent) {
+        Objects.requireNonNull(parent);
+        City[] cities = City.values();
+        List<City> cityList = new ArrayList<>();
+        for (City city : cities) {
+            if (city.getParent() == parent) {
+                cityList.add(city);
+            }
+        }
+        return cityList.toArray(new City[0]);
+    }
+
     public String getName() {
         return this.name;
+    }
+
+    public Province getParent() {
+        return parent;
     }
 }

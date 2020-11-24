@@ -7,14 +7,12 @@ import java.security.SecureRandom;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class NameBuilderTest {
-
-    private String name = null;
-    private final int loop = 10000;
+public class NameBuilderTest extends BaseTest {
 
     @Test(description = "不传入参数时")
     public void testBuild() {
-        for (int i = 0; i < loop; i++) {
+        String name;
+        for (int i = 0; i < LOOP; i++) {
             name = DataFactory.nameBuilder().build();
             assertThat(name).matches("\\W+");
         }
@@ -22,8 +20,8 @@ public class NameBuilderTest {
 
     @Test(description = "传入长度参数时")
     public void testBuildWithLength() {
-
-        for (int i = 0; i < loop; i++) {
+        String name;
+        for (int i = 0; i < LOOP; i++) {
             // 长度可选为 2 ~ 3
             int length =
                     new SecureRandom().nextInt(2) + 2;
@@ -49,8 +47,8 @@ public class NameBuilderTest {
 
     @Test(description = "指定生成姓氏或者名字")
     public void testBuildWithPosition() {
-
-        for (int i = 0; i < loop; i++) {
+        String name;
+        for (int i = 0; i < LOOP; i++) {
             int length =
                     new SecureRandom().nextInt(2) + 2;
             // 指定姓氏 + 长度
@@ -88,9 +86,9 @@ public class NameBuilderTest {
 
     @Test(description = "参数都传入的情况")
     public void testAllParameters() {
-        for (int i = 0; i < loop; i++) {
-            int length =
-                    new SecureRandom().nextInt(3) + 2;
+        String name;
+        for (int i = 0; i < LOOP; i++) {
+            int length = new SecureRandom().nextInt(3) + 2;
             // 男性 + 姓氏 + 长度
             name = DataFactory.nameBuilder().withLength(length)
                     .withGender(Gender.MALE)

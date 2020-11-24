@@ -1,19 +1,16 @@
 package cn.nothinghere.brook.builder;
 
 
+import cn.nothinghere.brook.value.human.Gender;
 import cn.nothinghere.brook.value.region.City;
 import cn.nothinghere.brook.value.region.Province;
-import cn.nothinghere.brook.value.human.Gender;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 
-public class IdCardBuilderTest {
-
-    public static final String ANHUI = "安徽省";
-    public static final String BEIJING = "北京市";
+public class IdCardBuilderTest extends BaseTest {
 
     public static final String HEBEI = "河北省";
     public static final String HEBEI_SHIJIAZHUANG = "石家庄市";
@@ -23,25 +20,16 @@ public class IdCardBuilderTest {
     public static final String SHANXI_TAIYUAN = "太原市";
     public static final String SHANXI_TAIYUAN_XIAODIANQU = "小店区";
 
-    private String idCard = null;
-    private final int loop = 10000;
 
     @Test
     public void testWithProvince() {
-
-        for (int i = 0; i < loop; i++) {
-            idCard = DataFactory.idCardBuilder().withProvince(ANHUI).build();
-            assertThat(idCard).hasSize(18);
-            assertThat(idCard).matches("\\d{17}[X\\d]");
-
-            idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING).build();
-            assertThat(idCard).hasSize(18);
-            assertThat(idCard).matches("\\d{17}[X\\d]");
-
-        }
+        String idCard;
         Province[] provinces = Province.values();
         for (Province province : provinces) {
-            DataFactory.idCardBuilder().withProvince(province).build();
+            idCard = DataFactory.idCardBuilder().withProvince(province).build();
+            assertThat(idCard).hasSize(18);
+            assertThat(idCard).matches("\\d{17}[X\\d]");
+            idCard = DataFactory.idCardBuilder().withProvince(province.getName()).build();
             assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
@@ -49,30 +37,34 @@ public class IdCardBuilderTest {
 
     @Test
     public void testWithCity() {
-        for (int i = 0; i < loop; i++) {
-            idCard = DataFactory.idCardBuilder().withProvince(HEBEI)
-                    .withCity(HEBEI_SHIJIAZHUANG)
-                    .build();
-            assertThat(idCard).hasSize(18);
-            assertThat(idCard).matches("\\d{17}[X\\d]");
-            idCard = DataFactory.idCardBuilder().withProvince(Province.BEIJING)
-                    .withCity(City.BEIJING)
-                    .build();
+        String idCard;
+        // 只传入【市】
+        City[] cities = City.values();
+        for (City city : cities) {
+            idCard = DataFactory.idCardBuilder().withCity(city).build();
             assertThat(idCard).hasSize(18);
             assertThat(idCard).matches("\\d{17}[X\\d]");
         }
 
-        City[] cities = City.values();
-        for (City city : cities) {
-            DataFactory.idCardBuilder().withCity(city).build();
-            assertThat(idCard).hasSize(18);
-            assertThat(idCard).matches("\\d{17}[X\\d]");
+        // 同时传入【省+市】
+        Province[] provinces = Province.values();
+        for (Province province : provinces) {
+            City[] cities1 = City.getByParent(province);
+            for (City city : cities1) {
+                idCard = DataFactory.idCardBuilder()
+                        .withProvince(province)
+                        .withCity(city)
+                        .build();
+                assertThat(idCard).hasSize(18);
+                assertThat(idCard).matches("\\d{17}[X\\d]");
+            }
         }
     }
 
     @Test
     public void testWithDistrict() {
-        for (int i = 0; i < loop; i++) {
+        String idCard;
+        for (int i = 0; i < LOOP; i++) {
             idCard = DataFactory.idCardBuilder()
                     .withProvince(HEBEI)
                     .withCity(HEBEI_SHIJIAZHUANG)
@@ -94,7 +86,8 @@ public class IdCardBuilderTest {
 
     @Test
     public void testWithAge() {
-        for (int i = 0; i < loop; i++) {
+        String idCard;
+        for (int i = 0; i < LOOP; i++) {
             idCard = DataFactory.idCardBuilder().withProvince(SHANXI)
                     .withCity(SHANXI_TAIYUAN)
                     .withDistrict(SHANXI_TAIYUAN_XIAODIANQU)
@@ -108,7 +101,8 @@ public class IdCardBuilderTest {
 
     @Test
     public void testWithGender() {
-        for (int i = 0; i < loop; i++) {
+        String idCard;
+        for (int i = 0; i < LOOP; i++) {
 
             idCard = DataFactory.idCardBuilder()
                     .withProvince(HEBEI)
@@ -135,7 +129,8 @@ public class IdCardBuilderTest {
 
     @Test
     public void testWithAgeRange() {
-        for (int i = 0; i < loop; i++) {
+        String idCard;
+        for (int i = 0; i < LOOP; i++) {
             idCard = DataFactory.idCardBuilder()
                     .withProvince(HEBEI)
                     .withCity(HEBEI_SHIJIAZHUANG)
@@ -149,7 +144,8 @@ public class IdCardBuilderTest {
 
     @Test
     public void testWithBirthday() {
-        for (int i = 0; i < loop; i++) {
+        String idCard;
+        for (int i = 0; i < LOOP; i++) {
             idCard = DataFactory.idCardBuilder()
                     .withProvince(HEBEI)
                     .withCity(HEBEI_SHIJIAZHUANG)

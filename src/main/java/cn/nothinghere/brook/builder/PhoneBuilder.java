@@ -10,6 +10,7 @@ import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Operator;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,7 @@ public final class PhoneBuilder implements Builder {
         private static final Map<String, List<Integer>> MAC_MAP;
 
         static {
-            MAC_MAP = YamlUtils.load("mac.yml");
+            MAC_MAP = Collections.unmodifiableMap(YamlUtils.load("mac.yml"));
         }
 
         private Operator operator;

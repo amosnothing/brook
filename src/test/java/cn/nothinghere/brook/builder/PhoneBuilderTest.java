@@ -5,12 +5,11 @@ import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 
 
-public class PhoneBuilderTest {
-    private final int loop = 10000;
+public class PhoneBuilderTest extends BaseTest{
 
     @Test
     public void testWithOperator() {
-        for (int i = 0; i < loop; i++) {
+        for (int i = 0; i < LOOP; i++) {
             String phone = DataFactory.phoneBuilder().withOperator(Operator.CMCC).build();
             Assertions.assertThat(phone).hasSize(11);
             phone = DataFactory.phoneBuilder().withOperator(Operator.CUCC).build();
@@ -23,7 +22,7 @@ public class PhoneBuilderTest {
 
     @Test
     public void testBuild() {
-        for (int i = 0; i < loop; i++) {
+        for (int i = 0; i < LOOP; i++) {
             String phone = DataFactory.phoneBuilder().build();
             Assertions.assertThat(phone).hasSize(11);
             phone = DataFactory.phoneBuilder().build();

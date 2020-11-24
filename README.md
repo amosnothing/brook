@@ -1,13 +1,17 @@
 # 使用
 
+详细说明
+
 pom中加入依赖:
 ```
 <dependency>
   <groupId>cn.nothinghere</groupId>
   <artifactId>brook</artifactId>
-  <version>0.0.4</version>
+  <version>${lastVersion}</version>
 </dependency>
 ```
+
+最新版本见：![v](https://img.shields.io/maven-central/v/cn.nothinghere/brook)
 
 ## 身份证号码生成
 

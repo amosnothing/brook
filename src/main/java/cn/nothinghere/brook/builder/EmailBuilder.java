@@ -20,7 +20,7 @@ public final class EmailBuilder implements Builder {
 
     private final Name name;
     private final Domain domain;
-    private String nameChinese;
+    private String chineseName;
 
     protected EmailBuilder() {
         name = new Name();
@@ -29,18 +29,18 @@ public final class EmailBuilder implements Builder {
 
     public EmailBuilder withName(String name) {
         Objects.requireNonNull(name);
-        this.nameChinese = name;
+        this.chineseName = name;
         return this;
     }
 
     @Override
     public String build() {
-        if (null == nameChinese) {
+        if (null == chineseName) {
             name.randomIfNull();
-            nameChinese = name.asString();
+            chineseName = name.asString();
         }
         domain.randomIfNull();
-        return PinyinUtils.toPinyin(nameChinese) + '@' + domain.asString();
+        return PinyinUtils.toPinyin(chineseName) + '@' + domain.asString();
     }
 
     public static class Domain implements Field, Serializable, Randomize {
