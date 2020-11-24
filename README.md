@@ -1,6 +1,6 @@
 # 使用
 
-详细说明
+！[详细说明](https://www.nothinghere.cn/java/java-brook-tutorial/)
 
 pom中加入依赖:
 ```
