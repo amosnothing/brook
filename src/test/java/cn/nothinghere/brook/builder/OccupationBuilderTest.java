@@ -9,7 +9,7 @@ public class OccupationBuilderTest extends BaseTest {
     @Test
     public void testBuild() {
         for (int i = 0; i < LOOP; i++) {
-            String build = DataFactory.occupationBuilder().build();
+            String build = OccupationBuilder.of().build();
             Assertions.assertThat(build).isNotNull();
         }
     }
@@ -18,7 +18,7 @@ public class OccupationBuilderTest extends BaseTest {
     public void testBuildWithType() {
         for (int i = 0; i < LOOP; i++) {
             for (MajorType majorType : MajorType.values()) {
-                String build = DataFactory.occupationBuilder()
+                String build = OccupationBuilder.of()
                         .withType(majorType)
                         .build();
                 Assertions.assertThat(build).isNotNull();

@@ -1,8 +1,10 @@
 package cn.nothinghere.brook.builder;
 
 /**
+ * use XXXBuilder.of() to create Builder
  * @author amos.chenj@outlook.com
  */
+@Deprecated
 public final class DataFactory {
 
     public static IdCardBuilder idCardBuilder() {

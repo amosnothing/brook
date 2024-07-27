@@ -14,8 +14,12 @@ public final class BankCardBuilder implements Builder {
 
     private final Bin bin;
 
-    protected BankCardBuilder() {
-        bin = new Bin();
+    BankCardBuilder() {
+        this.bin = new Bin();
+    }
+
+    public static BankCardBuilder of() {
+        return new BankCardBuilder();
     }
 
     public BankCardBuilder withBank(Bank bank) {

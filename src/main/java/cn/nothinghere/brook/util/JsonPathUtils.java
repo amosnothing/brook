@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * @author amos
  */
-public class JsonPathUtils {
+public final class JsonPathUtils {
 
     @SuppressWarnings("unchecked")
     public static String randomPath(Object object, String... keys) {

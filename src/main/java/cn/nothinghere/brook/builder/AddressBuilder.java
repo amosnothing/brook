@@ -14,43 +14,47 @@ public final class AddressBuilder implements Builder {
 
     private final Area area;
 
-    protected AddressBuilder() {
-        area = new Area();
+    AddressBuilder() {
+        this.area = new Area();
+    }
+
+    public static AddressBuilder of() {
+        return new AddressBuilder();
     }
 
     public AddressBuilder withProvince(String province) {
         Objects.requireNonNull(province, "province");
-        area.setProvince(province);
+        this.area.setProvince(province);
         return this;
     }
 
     public AddressBuilder withProvince(Province province) {
         Objects.requireNonNull(province, "province");
-        area.setProvince(province.getName());
+        this.area.setProvince(province.getName());
         return this;
     }
 
     public AddressBuilder withCity(String city) {
         Objects.requireNonNull(city, "city");
-        area.setCity(city);
+        this.area.setCity(city);
         return this;
     }
 
     public AddressBuilder withCity(City city) {
         Objects.requireNonNull(city, "city");
-        area.setCity(city.getName());
+        this.area.setCity(city.getName());
         return this;
     }
 
     public AddressBuilder withDistrict(String district) {
         Objects.requireNonNull(district, "district");
-        area.setDistrict(district);
+        this.area.setDistrict(district);
         return this;
     }
 
     @Override
     public String build() {
-        area.verify();
-        return area.asString();
+        this.area.verify();
+        return this.area.asString();
     }
 }

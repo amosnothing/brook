@@ -1,16 +1,16 @@
 package cn.nothinghere.brook.builder;
 
-import cn.nothinghere.brook.Builder;
-import cn.nothinghere.brook.value.region.City;
-import cn.nothinghere.brook.value.region.Province;
-import cn.nothinghere.brook.util.RandomUtils;
-import cn.nothinghere.brook.value.region.Area;
-import cn.nothinghere.brook.value.human.Birthday;
-import cn.nothinghere.brook.value.human.Gender;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
+
+import cn.nothinghere.brook.Builder;
+import cn.nothinghere.brook.util.RandomUtils;
+import cn.nothinghere.brook.value.human.Birthday;
+import cn.nothinghere.brook.value.human.Gender;
+import cn.nothinghere.brook.value.region.Area;
+import cn.nothinghere.brook.value.region.City;
+import cn.nothinghere.brook.value.region.Province;
 
 import static cn.nothinghere.brook.value.human.Birthday.choiceByAge;
 
@@ -27,65 +27,72 @@ public final class IdCardBuilder implements Builder {
     private final Birthday birthday;
     private Gender gender = Gender.UNKNOWN;
 
-    protected IdCardBuilder() {
-        area = new Area();
-        birthday = new Birthday();
+    IdCardBuilder() {
+        this.area = new Area();
+        this.birthday = new Birthday();
+    }
+
+    /**
+     * @return self
+     */
+    public static IdCardBuilder of() {
+        return new IdCardBuilder();
     }
 
     public IdCardBuilder withProvince(String province) {
         Objects.requireNonNull(province, "province");
-        area.setProvince(province);
+        this.area.setProvince(province);
         return this;
     }
 
     public IdCardBuilder withProvince(Province province) {
         Objects.requireNonNull(province, "province");
-        area.setProvince(province.getName());
+        this.area.setProvince(province.getName());
         return this;
     }
 
     public IdCardBuilder withCity(String city) {
         Objects.requireNonNull(city, "city");
-        area.setCity(city);
+        this.area.setCity(city);
         return this;
     }
 
     public IdCardBuilder withCity(City city) {
         Objects.requireNonNull(city, "city");
-        area.setCity(city.getName());
+        this.area.setCity(city.getName());
         return this;
     }
 
     public IdCardBuilder withDistrict(String district) {
         Objects.requireNonNull(district, "district");
-        area.setDistrict(district);
+        this.area.setDistrict(district);
         return this;
     }
 
     public IdCardBuilder withAge(int age) {
-        LocalDate birth = choiceByAge(age, age + 1);
-        birthday.setBirth(birth);
+        final LocalDate birth = choiceByAge(age, age + 1);
+        this.birthday.setBirth(birth);
         return this;
     }
 
 
     public IdCardBuilder withAge(int beginAgeInclude, int endAgeExclude) {
-        LocalDate birth = choiceByAge(beginAgeInclude, endAgeExclude);
-        birthday.setBirth(birth);
+        final LocalDate birth = choiceByAge(beginAgeInclude, endAgeExclude);
+        this.birthday.setBirth(birth);
         return this;
     }
 
     /**
      * @param birth 必须满足 ： yyyyMMdd
+     *
      * @return IdCardBuilder
      */
     public IdCardBuilder withBirthday(final String birth) {
         Objects.requireNonNull(birth, "birthday");
         try {
-            birthday.setBirth(birth);
+            this.birthday.setBirth(birth);
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("日期格式不符合yyyyMMdd格式");
-            
         }
         return this;
     }
@@ -135,7 +142,6 @@ public final class IdCardBuilder implements Builder {
         String areaCode = this.area.asCode();
         this.birthday.randomIfNull();
         String birth = this.birthday.asString();
-
         String serialNo = serialNo();
         String genderCode = this.gender.asCode().toString();
 

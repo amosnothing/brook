@@ -15,12 +15,12 @@ public class BankCardBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             StateBank[] stateBanks = StateBank.values();
             for (StateBank stateBank : stateBanks) {
-                bankCardNo = DataFactory.bankCardBuilder().withBank(stateBank).build();
+                bankCardNo = BankCardBuilder.of().withBank(stateBank).build();
                 assertThat(bankCardNo).matches("\\d+");
             }
             CityBank[] cityBanks = CityBank.values();
             for (CityBank cityBank : cityBanks) {
-                bankCardNo = DataFactory.bankCardBuilder().withBank(cityBank).build();
+                bankCardNo = BankCardBuilder.of().withBank(cityBank).build();
                 assertThat(bankCardNo).matches("\\d+");
             }
         }
@@ -30,13 +30,13 @@ public class BankCardBuilderTest extends BaseTest {
     public void testWithCardType() {
         String bankCardNo;
         for (int i = 0; i < LOOP; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.DC).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.DC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.CC).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.CC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.PC).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.PC).build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.SCC).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.SCC).build();
             assertThat(bankCardNo).matches("\\d+");
         }
     }
@@ -49,28 +49,28 @@ public class BankCardBuilderTest extends BaseTest {
         int len18 = 18;
         int len19 = 19;
         for (int i = 0; i < LOOP; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().withLength(len16).build();
+            bankCardNo = BankCardBuilder.of().withLength(len16).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len16);
-            bankCardNo = DataFactory.bankCardBuilder().withLength(len17).build();
+            bankCardNo = BankCardBuilder.of().withLength(len17).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len17);
-            bankCardNo = DataFactory.bankCardBuilder().withLength(len18).build();
+            bankCardNo = BankCardBuilder.of().withLength(len18).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len18);
-            bankCardNo = DataFactory.bankCardBuilder().withLength(len19).build();
+            bankCardNo = BankCardBuilder.of().withLength(len19).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len19);
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.DC).withLength(len16).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.DC).withLength(len16).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len16);
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.DC).withLength(len17).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.DC).withLength(len17).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len17);
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.DC).withLength(len18).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.DC).withLength(len18).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len18);
-            bankCardNo = DataFactory.bankCardBuilder().withType(BankCardType.DC).withLength(len19).build();
+            bankCardNo = BankCardBuilder.of().withType(BankCardType.DC).withLength(len19).build();
             assertThat(bankCardNo).matches("\\d+");
             assertThat(bankCardNo).hasSize(len19);
         }
@@ -80,21 +80,21 @@ public class BankCardBuilderTest extends BaseTest {
     public void testBuild() {
         String bankCardNo;
         for (int i = 0; i < LOOP; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.XMBANK)
-                    .withType(BankCardType.DC)
-                    .build();
+            bankCardNo = BankCardBuilder.of().withBank(CityBank.XMBANK)
+                .withType(BankCardType.DC)
+                .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.XMCCB)
-                    .withType(BankCardType.DC)
-                    .build();
+            bankCardNo = BankCardBuilder.of().withBank(CityBank.XMCCB)
+                .withType(BankCardType.DC)
+                .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.BOD)
-                    .withType(BankCardType.CC)
-                    .build();
+            bankCardNo = BankCardBuilder.of().withBank(CityBank.BOD)
+                .withType(BankCardType.CC)
+                .build();
             assertThat(bankCardNo).matches("\\d+");
-            bankCardNo = DataFactory.bankCardBuilder().withBank(CityBank.YXCCB)
-                    .withType(BankCardType.CC)
-                    .build();
+            bankCardNo = BankCardBuilder.of().withBank(CityBank.YXCCB)
+                .withType(BankCardType.CC)
+                .build();
             assertThat(bankCardNo).matches("\\d+");
         }
     }
@@ -103,7 +103,7 @@ public class BankCardBuilderTest extends BaseTest {
     public void testWithoutParam() {
         String bankCardNo;
         for (int i = 0; i < LOOP; i++) {
-            bankCardNo = DataFactory.bankCardBuilder().build();
+            bankCardNo = BankCardBuilder.of().build();
             assertThat(bankCardNo).isNotBlank();
         }
     }

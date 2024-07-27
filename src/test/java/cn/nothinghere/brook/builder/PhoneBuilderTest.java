@@ -10,11 +10,11 @@ public class PhoneBuilderTest extends BaseTest{
     @Test
     public void testWithOperator() {
         for (int i = 0; i < LOOP; i++) {
-            String phone = DataFactory.phoneBuilder().withOperator(Operator.CMCC).build();
+            String phone = PhoneBuilder.of().withOperator(Operator.CMCC).build();
             Assertions.assertThat(phone).hasSize(11);
-            phone = DataFactory.phoneBuilder().withOperator(Operator.CUCC).build();
+            phone = PhoneBuilder.of().withOperator(Operator.CUCC).build();
             Assertions.assertThat(phone).hasSize(11);
-            phone = DataFactory.phoneBuilder().withOperator(Operator.CTCC).build();
+            phone = PhoneBuilder.of().withOperator(Operator.CTCC).build();
             Assertions.assertThat(phone).hasSize(11);
 
         }
@@ -23,11 +23,11 @@ public class PhoneBuilderTest extends BaseTest{
     @Test
     public void testBuild() {
         for (int i = 0; i < LOOP; i++) {
-            String phone = DataFactory.phoneBuilder().build();
+            String phone = PhoneBuilder.of().build();
             Assertions.assertThat(phone).hasSize(11);
-            phone = DataFactory.phoneBuilder().build();
+            phone = PhoneBuilder.of().build();
             Assertions.assertThat(phone).hasSize(11);
-            phone = DataFactory.phoneBuilder().build();
+            phone = PhoneBuilder.of().build();
             Assertions.assertThat(phone).hasSize(11);
         }
     }

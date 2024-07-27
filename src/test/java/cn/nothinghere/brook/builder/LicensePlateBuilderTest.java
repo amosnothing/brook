@@ -15,7 +15,7 @@ public class LicensePlateBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             PlateType[] types = PlateType.values();
             for (PlateType plateType : types) {
-                String s = DataFactory.licensePlateBuilder().withType(plateType).build();
+                String s = LicensePlateBuilder.of().withType(plateType).build();
                 assertThat(s).hasSize(8);
                 assertThat(s).matches("[\\u4e00-\\u9fa5][ABCDEFGHJKLMNPQRSTUVWXYZ0-9]{7}");
             }
@@ -27,7 +27,7 @@ public class LicensePlateBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             Province[] provinces = Province.values();
             for (Province province : provinces) {
-                String s = DataFactory.licensePlateBuilder().withProvince(province).build();
+                String s = LicensePlateBuilder.of().withProvince(province).build();
                 assertThat(s).hasSize(8);
                 assertThat(s).matches("[\\u4e00-\\u9fa5][ABCDEFGHJKLMNPQRSTUVWXYZ0-9]{7}");
             }
@@ -39,7 +39,7 @@ public class LicensePlateBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             Province[] provinces = Province.values();
             for (Province province : provinces) {
-                String s = DataFactory.licensePlateBuilder().withProvince(province.getName()).build();
+                String s = LicensePlateBuilder.of().withProvince(province.getName()).build();
                 assertThat(s).hasSize(8);
                 assertThat(s).matches("[\\u4e00-\\u9fa5][ABCDEFGHJKLMNPQRSTUVWXYZ0-9]{7}");
             }
@@ -51,7 +51,7 @@ public class LicensePlateBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             City[] cities = City.values();
             for (City city : cities) {
-                String s = DataFactory.licensePlateBuilder().withCity(city).build();
+                String s = LicensePlateBuilder.of().withCity(city).build();
                 assertThat(s).hasSize(8);
                 assertThat(s).matches("[\\u4e00-\\u9fa5][ABCDEFGHJKLMNPQRSTUVWXYZ0-9]{7}");
             }
@@ -60,7 +60,7 @@ public class LicensePlateBuilderTest extends BaseTest {
             for (Province province : provinces) {
                 City[] cities1 = City.getByParent(province);
                 for (City city : cities1) {
-                    String s = DataFactory.licensePlateBuilder().withProvince(province)
+                    String s = LicensePlateBuilder.of().withProvince(province)
                             .withCity(city)
                             .build();
                     assertThat(s).hasSize(8);
@@ -75,7 +75,7 @@ public class LicensePlateBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             City[] cities = City.values();
             for (City city : cities) {
-                String s = DataFactory.licensePlateBuilder().withCity(city.getName()).build();
+                String s = LicensePlateBuilder.of().withCity(city.getName()).build();
                 assertThat(s).hasSize(8);
                 assertThat(s).matches("[\\u4e00-\\u9fa5][ABCDEFGHJKLMNPQRSTUVWXYZ0-9]{7}");
             }
@@ -84,7 +84,7 @@ public class LicensePlateBuilderTest extends BaseTest {
             for (Province province : provinces) {
                 City[] cities1 = City.getByParent(province);
                 for (City city : cities1) {
-                    String s = DataFactory.licensePlateBuilder().withProvince(province.getName())
+                    String s = LicensePlateBuilder.of().withProvince(province.getName())
                             .withCity(city.getName())
                             .build();
                     assertThat(s).hasSize(8);

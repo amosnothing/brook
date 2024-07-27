@@ -15,38 +15,42 @@ public final class LicensePlateBuilder implements Builder {
 
     private final Plate plate;
 
-    protected LicensePlateBuilder() {
-        plate = new Plate();
+    LicensePlateBuilder() {
+        this.plate = new Plate();
+    }
+
+    public static LicensePlateBuilder of() {
+        return new LicensePlateBuilder();
     }
 
     public LicensePlateBuilder withType(PlateType type) {
-        plate.setType(type);
+        this.plate.setType(type);
         return this;
     }
 
     public LicensePlateBuilder withProvince(Province province) {
-        plate.setProvince(province.getName());
+        this.plate.setProvince(province.getName());
         return this;
     }
 
     public LicensePlateBuilder withProvince(String province) {
-        plate.setProvince(province);
+        this.plate.setProvince(province);
         return this;
     }
 
     public LicensePlateBuilder withCity(City city) {
-        plate.setCity(city.getName());
+        this.plate.setCity(city.getName());
         return this;
     }
 
     public LicensePlateBuilder withCity(String city) {
-        plate.setCity(city);
+        this.plate.setCity(city);
         return this;
     }
 
     @Override
     public String build() {
-        plate.verify();
-        return plate.asString();
+        this.plate.verify();
+        return this.plate.asString();
     }
 }

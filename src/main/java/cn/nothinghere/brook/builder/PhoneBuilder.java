@@ -21,8 +21,12 @@ public final class PhoneBuilder implements Builder {
 
     private final Mac mac;
 
-    protected PhoneBuilder() {
+    PhoneBuilder() {
         mac = new Mac();
+    }
+
+    public static PhoneBuilder of() {
+        return new PhoneBuilder();
     }
 
     public PhoneBuilder withOperator(Operator operator) {

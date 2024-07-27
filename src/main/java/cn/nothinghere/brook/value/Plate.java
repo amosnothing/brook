@@ -53,10 +53,10 @@ public class Plate implements Field, Verifiable, Serializable {
     public void verify() {
         // 校验 省/市/车牌类型 如果没有会提示找不到
         if (null == this.type) {
-            setType(PlateType.COMMON);
+            this.setType(PlateType.COMMON);
         }
-        valueHolder = (String) JsonPathUtils.randomValue(PLATE_MAP, this.province, this.city, this.type.name());
-        if (valueHolder == null) {
+        this.valueHolder = (String) JsonPathUtils.randomValue(PLATE_MAP, this.province, this.city, this.type.name());
+        if (this.valueHolder == null) {
             throw new IllegalArgumentException(MessageFormat.format("找不到对应的记录[{0}].[{1}].[{2}]",
                     this.province == null ? "*" : this.province,
                     this.city == null ? "*" : this.city,
@@ -67,7 +67,7 @@ public class Plate implements Field, Verifiable, Serializable {
     @Override
     public String asString() {
         // 车牌号没有使用I/O 字母 替换为数字1和0
-        return valueHolder + RandomStringUtils.alphanumeric(PLATE_LENGTH - valueHolder.length())
+        return this.valueHolder + RandomStringUtils.alphanumeric(PLATE_LENGTH - this.valueHolder.length())
                 .toUpperCase()
                 .replace('I', '1')
                 .replace('O', '0')

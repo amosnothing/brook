@@ -1,17 +1,17 @@
 package cn.nothinghere.brook.builder;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
 import cn.nothinghere.brook.util.RandomUtils;
 import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.Country;
-
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * amos.chenj@outlook.com
@@ -22,25 +22,31 @@ public class CompanyBuilder implements Builder {
 
     private final Company company;
 
-    protected CompanyBuilder() {
-        company = new Company();
+    CompanyBuilder() {
+        this.company = new Company();
+    }
+
+    public static CompanyBuilder of() {
+        return new CompanyBuilder();
     }
 
     /**
-     *  选择国家
+     * 选择国家
+     *
      * @param country 国家or地区
+     *
      * @return self
      */
     public CompanyBuilder withCountry(Country country) {
         Objects.requireNonNull(country);
-        company.setCountry(country);
+        this.company.setCountry(country);
         return this;
     }
 
     @Override
     public String build() {
-        company.randomIfNull();
-        return company.asString();
+        this.company.randomIfNull();
+        return this.company.asString();
     }
 
 
@@ -53,7 +59,7 @@ public class CompanyBuilder implements Builder {
         private String name;
 
         public Country getCountry() {
-            return country;
+            return this.country;
         }
 
         public void setCountry(Country country) {
@@ -61,7 +67,7 @@ public class CompanyBuilder implements Builder {
         }
 
         public String getName() {
-            return name;
+            return this.name;
         }
 
         public void setName(String name) {
@@ -80,8 +86,8 @@ public class CompanyBuilder implements Builder {
         @Override
         public void randomIfNull() {
             // 国家随机
-            if (country == null) {
-                country = RandomUtils.choice(Country.values());
+            if (this.country == null) {
+                this.country = RandomUtils.choice(Country.values());
             }
             // 从国家所属公司列表中随机选一个
             this.name = RandomUtils.choice(MAP.get(this.country.getShortName()));

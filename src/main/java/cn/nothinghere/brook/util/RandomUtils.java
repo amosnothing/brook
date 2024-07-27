@@ -2,7 +2,15 @@ package cn.nothinghere.brook.util;
 
 import java.lang.reflect.Array;
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -19,6 +27,7 @@ public final class RandomUtils {
      *
      * @param originMap 初始map
      * @param <K>       需要用来比对的key
+     *
      * @return 被选中的key
      */
     public static <K> K choice(Map<K, Integer> originMap) {
@@ -26,7 +35,7 @@ public final class RandomUtils {
 
         AtomicReference<Double> i = new AtomicReference<>(0D);
         originMap.forEach(
-                (k, v) -> weightMap.put((i.updateAndGet(v1 -> v1 + v)), k));
+            (k, v) -> weightMap.put((i.updateAndGet(v1 -> v1 + v)), k));
 
         double randomWeight = weightMap.lastKey() * Math.random();
         SortedMap<Double, K> tailMap = weightMap.tailMap(randomWeight, false);
@@ -40,6 +49,7 @@ public final class RandomUtils {
      * @param tList 集合
      * @param count 被选中的元素个数
      * @param <T>   集合类型
+     *
      * @return 集合当中随机的某几个数值
      */
     public static <T> List<T> choice(List<T> tList, int count) {
@@ -55,6 +65,7 @@ public final class RandomUtils {
      *
      * @param tList 集合
      * @param <T>   集合类型
+     *
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(List<T> tList) {
@@ -70,6 +81,7 @@ public final class RandomUtils {
      * @param tSet  集合
      * @param count 被选中的元素个数
      * @param <T>   集合类型
+     *
      * @return 集合当中随机的某几个数值
      */
     public static <T> Set<T> choice(Set<T> tSet, int count) {
@@ -87,6 +99,7 @@ public final class RandomUtils {
      *
      * @param tSet 集合
      * @param <T>  集合类型
+     *
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(Set<T> tSet) {
@@ -101,6 +114,7 @@ public final class RandomUtils {
      * @param tArray 数据
      * @param count  被选中的元素个数
      * @param <T>    数组类型
+     *
      * @return 数组当中随机的某几个数值
      */
     @SuppressWarnings("unchecked")
@@ -123,12 +137,12 @@ public final class RandomUtils {
         return t;
     }
 
-
     /**
      * 数组随机取值
      *
      * @param tArray 数据
      * @param <T>    数组类型
+     *
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(T[] tArray) {
@@ -149,6 +163,7 @@ public final class RandomUtils {
      * 最后一位总是被置为1，前面几位不变
      *
      * @param bound 数字上届（不包含），必须为正数
+     *
      * @return 随机奇数
      */
     public static int odd(int bound) {
@@ -160,6 +175,7 @@ public final class RandomUtils {
      * 最后一位总是被置为0，前面几位不改变
      *
      * @param bound 数字上届（不包含），必须为正数
+     *
      * @return 随机偶数 + 0
      */
     public static int even(int bound) {
@@ -173,6 +189,4 @@ public final class RandomUtils {
     public static int nextInt(int startInclude, int endExclude) {
         return new SecureRandom().nextInt(endExclude - startInclude) + startInclude;
     }
-
-
 }

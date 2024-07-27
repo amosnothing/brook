@@ -1,5 +1,7 @@
 package cn.nothinghere.brook.builder;
 
+import java.util.Objects;
+
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.value.occupation.MajorType;
 import cn.nothinghere.brook.value.occupation.Occupation;
@@ -12,19 +14,24 @@ import cn.nothinghere.brook.value.occupation.Occupation;
 public final class OccupationBuilder implements Builder {
     private final Occupation occupation;
 
-    protected OccupationBuilder() {
-        occupation = new Occupation();
+    OccupationBuilder() {
+        this.occupation = new Occupation();
+    }
+
+    public static OccupationBuilder of() {
+        return new OccupationBuilder();
     }
 
     public OccupationBuilder withType(MajorType type) {
-        occupation.setMajorType(type);
+        Objects.requireNonNull(type);
+        this.occupation.setMajorType(type);
         return this;
     }
 
     @Override
     public String build() {
-        occupation.randomIfNull();
-        occupation.verify();
-        return occupation.asString();
+        this.occupation.randomIfNull();
+        this.occupation.verify();
+        return this.occupation.asString();
     }
 }

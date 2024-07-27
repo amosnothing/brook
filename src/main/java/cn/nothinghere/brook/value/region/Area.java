@@ -1,14 +1,14 @@
 package cn.nothinghere.brook.value.region;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Map;
+
 import cn.nothinghere.brook.Value;
 import cn.nothinghere.brook.Verifiable;
 import cn.nothinghere.brook.util.JsonPathUtils;
 import cn.nothinghere.brook.util.YamlUtils;
 import com.jayway.jsonpath.PathNotFoundException;
-
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.Map;
 
 /**
  * 省-市-区
@@ -20,8 +20,7 @@ import java.util.Map;
  *
  * @author amos.chenj@outlook.com
  */
-public class Area  implements Value<String>, Serializable, Verifiable {
-
+public class Area implements Value<String>, Serializable, Verifiable {
     private static final long serialVersionUID = -8607770453586455092L;
     private String province;
     private String city;
@@ -48,7 +47,7 @@ public class Area  implements Value<String>, Serializable, Verifiable {
     }
 
     public String getProvince() {
-        return province;
+        return this.province;
     }
 
     public String getCity() {
@@ -62,26 +61,24 @@ public class Area  implements Value<String>, Serializable, Verifiable {
 
     @Override
     public String asCode() {
-        return String.valueOf(kvHolder.getValue());
-
+        return String.valueOf(this.kvHolder.getValue());
     }
 
     /**
      * 根据json-path获取到的多层级key，带有一些特殊符号需要去掉
+     *
      * @return 地区名
      */
     @Override
     public String asString() {
-        return kvHolder.getKey()
-                .replaceAll("\\$|\\[|]|'", "")
-                ;
+        return this.kvHolder.getKey().replaceAll("\\$|\\[|]|'", "");
     }
 
     @Override
     public void verify() {
         try {
             // 校验 省/市/区 如果没有会提示找不到
-            kvHolder = JsonPathUtils.random(AREA_MAP, this.province, this.city, this.district);
+            this.kvHolder = JsonPathUtils.random(AREA_MAP, this.province, this.city, this.district);
         } catch (PathNotFoundException exception) {
             throw new IllegalArgumentException(exception.getMessage().replace('$', ' '));
         }

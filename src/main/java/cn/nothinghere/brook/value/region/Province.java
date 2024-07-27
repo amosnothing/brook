@@ -4,7 +4,7 @@ package cn.nothinghere.brook.value.region;
  * @author amos.chenj@outlook.com
  */
 
-public enum Province implements Region{
+public enum Province implements Region {
     /**
      * 直辖市
      */
@@ -52,13 +52,13 @@ public enum Province implements Region{
     HONG_KONG("香港特别行政区"),
     MACAO("澳门特别行政区"),
     ;
-    private String name;
+    private final String name;
 
     Province(String name) {
         this.name = name;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 }

@@ -17,7 +17,7 @@ public class AddressBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             Province[] provides = Province.values();
             for (Province provide : provides) {
-                address = DataFactory.addressBuilder().withProvince(provide.getName()).build();
+                address = AddressBuilder.of().withProvince(provide.getName()).build();
                 assertThat(address).startsWith(provide.getName());
             }
         }
@@ -32,7 +32,7 @@ public class AddressBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             Province[] provides = Province.values();
             for (Province provide : provides) {
-                address = DataFactory.addressBuilder().withProvince(provide).build();
+                address = AddressBuilder.of().withProvince(provide).build();
                 assertThat(address).startsWith(provide.getName());
             }
         }
@@ -47,7 +47,7 @@ public class AddressBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
             City[] cities = City.values();
             for (City city : cities) {
-                address = DataFactory.addressBuilder().withCity(city.getName()).build();
+                address = AddressBuilder.of().withCity(city.getName()).build();
                 assertThat(address).contains(city.getName());
             }
         }
@@ -65,7 +65,7 @@ public class AddressBuilderTest extends BaseTest {
                 City[] cities = City.getByParent(provide);
                 for (City city : cities) {
                     // 省市 组合使用的情况
-                    address = DataFactory.addressBuilder()
+                    address = AddressBuilder.of()
                             .withProvince(provide)
                             .withCity(city)
                             .build();
@@ -75,7 +75,7 @@ public class AddressBuilderTest extends BaseTest {
                     // 市 单独使用的情况
                     // 由于可能存在一个市 对应多个省的情况
                     // 所以不便于另外再检验一遍省 只校验市即可
-                    address = DataFactory.addressBuilder()
+                    address = AddressBuilder.of()
                             .withCity(city)
                             .build();
                     assertThat(address).contains(city.getName());
@@ -94,11 +94,11 @@ public class AddressBuilderTest extends BaseTest {
         for (int i = 0; i < LOOP; i++) {
 
             String tianhe = "天河区";
-            address = DataFactory.addressBuilder().withDistrict(tianhe).build();
+            address = AddressBuilder.of().withDistrict(tianhe).build();
             assertThat(address).contains(tianhe);
 
             String tongs = "通什镇";
-            address = DataFactory.addressBuilder().withDistrict(tongs).build();
+            address = AddressBuilder.of().withDistrict(tongs).build();
             assertThat(address).contains(tongs);
         }
     }

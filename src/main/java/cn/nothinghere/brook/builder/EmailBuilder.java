@@ -1,5 +1,10 @@
 package cn.nothinghere.brook.builder;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import cn.nothinghere.brook.Builder;
 import cn.nothinghere.brook.Field;
 import cn.nothinghere.brook.Randomize;
@@ -7,11 +12,6 @@ import cn.nothinghere.brook.util.PinyinUtils;
 import cn.nothinghere.brook.util.RandomUtils;
 import cn.nothinghere.brook.util.YamlUtils;
 import cn.nothinghere.brook.value.human.Name;
-
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author amos.chenj@outlook.com
@@ -22,9 +22,13 @@ public final class EmailBuilder implements Builder {
     private final Domain domain;
     private String chineseName;
 
-    protected EmailBuilder() {
-        name = new Name();
-        domain = new Domain();
+    EmailBuilder() {
+        this.name = new Name();
+        this.domain = new Domain();
+    }
+
+    public static EmailBuilder of() {
+        return new EmailBuilder();
     }
 
     public EmailBuilder withName(String name) {
@@ -35,12 +39,12 @@ public final class EmailBuilder implements Builder {
 
     @Override
     public String build() {
-        if (null == chineseName) {
-            name.randomIfNull();
-            chineseName = name.asString();
+        if (null == this.chineseName) {
+            this.name.randomIfNull();
+            this.chineseName = this.name.asString();
         }
-        domain.randomIfNull();
-        return PinyinUtils.toPinyin(chineseName) + '@' + domain.asString();
+        this.domain.randomIfNull();
+        return PinyinUtils.toPinyin(this.chineseName) + '@' + this.domain.asString();
     }
 
     public static class Domain implements Field, Serializable, Randomize {
@@ -57,7 +61,7 @@ public final class EmailBuilder implements Builder {
         private String data;
 
         public String getData() {
-            return data;
+            return this.data;
         }
 
         public void setData(String data) {
@@ -66,14 +70,14 @@ public final class EmailBuilder implements Builder {
 
         @Override
         public void randomIfNull() {
-            if (null == data) {
-                setData(RandomUtils.choice(DOMAIN_LIST));
+            if (null == this.data) {
+                this.setData(RandomUtils.choice(DOMAIN_LIST));
             }
         }
 
         @Override
         public String asString() {
-            return getData();
+            return this.getData();
         }
     }
 }

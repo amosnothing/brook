@@ -14,8 +14,12 @@ public final class NameBuilder implements Builder {
 
     private final Name name;
 
-    protected NameBuilder() {
-        name = new Name();
+    NameBuilder() {
+        this.name = new Name();
+    }
+
+    public static NameBuilder of() {
+        return new NameBuilder();
     }
 
     public NameBuilder withGender(Gender gender) {
