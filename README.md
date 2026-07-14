@@ -16,6 +16,19 @@ pom中加入依赖:
 
 ## 身份证号码生成
 
+### 推荐写法
+
+保留原有 `builder` 用法，同时新增单行入口 `Brook`：
+
+```java
+String idCardNo = Brook.idCard(builder -> builder
+        .withProvince(Province.GUANGDONG)
+        .withCity(City.GUANGZHOU)
+        .withDistrict("天河区")
+        .withAge(20, 30)
+        .withGender(Gender.FEMALE));
+```
+
 ### 身份证百科
 
 居民身份证号码，正确、正式的称谓应该是“公民身份号码”。
@@ -167,6 +180,14 @@ String phoneNo = builder.withOperator(Operator.CTCC).build();
 
 ```
 NameBuilder builder = DataFactory.nameBuilder()
+```
+
+推荐单行写法：
+
+```java
+String name = Brook.name(builder -> builder
+        .withGender(Gender.FEMALE)
+        .withLength(3));
 ```
 
 - 随机生成全名

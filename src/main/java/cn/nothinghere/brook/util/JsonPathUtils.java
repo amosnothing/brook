@@ -5,14 +5,20 @@ import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.Option;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author amos
  */
 public final class JsonPathUtils {
+
+    private static final Pattern PATH_SEGMENT_PATTERN = Pattern.compile("'([^']+)'");
 
     @SuppressWarnings("unchecked")
     public static String randomPath(Object object, String... keys) {
@@ -29,16 +35,8 @@ public final class JsonPathUtils {
     public static Object randomValue(Object object, String... keys) {
         Object values = allValues(object, keys);
         if (values instanceof List) {
-            // 可以找到多条记录 随机取一条
-            // 比如[A, B, C]
-            Object choice = RandomUtils.choice((List<Object>) values);
-            // 另外一种情况：同一个key存在多个value的时候
-            // 比如[[A, B], C , [D, E, F]]
-            if (choice instanceof List) {
-                return RandomUtils.choice((List<Object>) choice);
-            } else {
-                return choice;
-            }
+            List<Object> candidates = (List<Object>) values;
+            return resolveValue(candidates.get(RandomUtils.nextInt(candidates.size())));
         } else {
             // 只找到单条记录
             return values;
@@ -62,21 +60,40 @@ public final class JsonPathUtils {
         Object paths = allPaths(object, keys);
         Object values = allValues(object, keys);
         if (paths instanceof List && values instanceof List) {
-            int nextInt = RandomUtils.nextInt(((List<?>) paths).size());
-            // 可以找到多条记录 随机取一条
-            // 比如[A, B, C]
-            Object choice = RandomUtils.choice((List<Object>) values);
-            // 另外一种情况：同一个key存在多个value的时候
-            // 比如[[A, B], C , [D, E, F]]
-            if (choice instanceof List) {
-                return new AbstractMap.SimpleEntry<>(((List<String>) paths).get(nextInt), RandomUtils.choice((List<Object>) choice));
-            }
-
-            return new AbstractMap.SimpleEntry<>(((List<String>) paths).get(nextInt), ((List<?>) values).get(nextInt));
+            List<String> pathList = (List<String>) paths;
+            List<Object> valueList = (List<Object>) values;
+            int index = RandomUtils.nextInt(pathList.size());
+            return new AbstractMap.SimpleEntry<>(pathList.get(index), resolveValue(valueList.get(index)));
         } else {
             // 只找到单条记录
             return new AbstractMap.SimpleEntry<>(String.valueOf(paths), values);
         }
+    }
+
+    public static List<String> pathSegments(String path) {
+        Objects.requireNonNull(path, "path");
+        Matcher matcher = PATH_SEGMENT_PATTERN.matcher(path);
+        List<String> segments = new ArrayList<>();
+        while (matcher.find()) {
+            segments.add(matcher.group(1));
+        }
+        return Collections.unmodifiableList(segments);
+    }
+
+    public static String joinPathSegments(String path) {
+        StringBuilder builder = new StringBuilder();
+        for (String segment : pathSegments(path)) {
+            builder.append(segment);
+        }
+        return builder.toString();
+    }
+
+    public static String lastPathSegment(String path) {
+        List<String> segments = pathSegments(path);
+        if (segments.isEmpty()) {
+            throw new IllegalArgumentException("path中不存在可解析的节点: " + path);
+        }
+        return segments.get(segments.size() - 1);
     }
 
     public static <T> T allPaths(Object object, String... keys) {
@@ -105,6 +122,15 @@ public final class JsonPathUtils {
             }
         }
         return sb.toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Object resolveValue(Object value) {
+        if (value instanceof List) {
+            List<Object> values = (List<Object>) value;
+            return RandomUtils.choice(values);
+        }
+        return value;
     }
 
     private JsonPathUtils() {

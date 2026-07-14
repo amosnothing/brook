@@ -27,6 +27,8 @@ public class Area implements Value<String>, Serializable, Verifiable {
     private String district;
 
     private transient Map.Entry<String, Object> kvHolder;
+    private transient String displayHolder;
+    private transient String codeHolder;
 
     private static final Map<String, Object> AREA_MAP;
 
@@ -61,7 +63,7 @@ public class Area implements Value<String>, Serializable, Verifiable {
 
     @Override
     public String asCode() {
-        return String.valueOf(this.kvHolder.getValue());
+        return this.codeHolder;
     }
 
     /**
@@ -71,7 +73,7 @@ public class Area implements Value<String>, Serializable, Verifiable {
      */
     @Override
     public String asString() {
-        return this.kvHolder.getKey().replaceAll("\\$|\\[|]|'", "");
+        return this.displayHolder;
     }
 
     @Override
@@ -79,6 +81,8 @@ public class Area implements Value<String>, Serializable, Verifiable {
         try {
             // 校验 省/市/区 如果没有会提示找不到
             this.kvHolder = JsonPathUtils.random(AREA_MAP, this.province, this.city, this.district);
+            this.displayHolder = JsonPathUtils.joinPathSegments(this.kvHolder.getKey());
+            this.codeHolder = String.valueOf(this.kvHolder.getValue());
         } catch (PathNotFoundException exception) {
             throw new IllegalArgumentException(exception.getMessage().replace('$', ' '));
         }

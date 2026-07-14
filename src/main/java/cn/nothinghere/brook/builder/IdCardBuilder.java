@@ -98,11 +98,13 @@ public final class IdCardBuilder implements Builder {
     }
 
     public IdCardBuilder withGender(Gender gender) {
+        Objects.requireNonNull(gender, "gender");
         this.gender = gender;
         return this;
     }
 
     public IdCardBuilder withGender(String gender) {
+        Objects.requireNonNull(gender, "gender");
         this.gender = Gender.fromName(gender);
         return this;
     }
