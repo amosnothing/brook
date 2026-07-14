@@ -7,14 +7,17 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
+import java.util.Objects;
+
 /**
  * 中文转拼音
  *
  * @author amos.chenj@outlook.com
  */
-public class PinyinUtils {
+public final class PinyinUtils {
 
     public static String toPinyin(String chineseOrEnglish) {
+        Objects.requireNonNull(chineseOrEnglish, "chineseOrEnglish");
         StringBuilder pinyinStr = new StringBuilder();
         char[] newChar = chineseOrEnglish.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -24,9 +27,10 @@ public class PinyinUtils {
         for (char aNewChar : newChar) {
             if (aNewChar > 128) {
                 try {
-                    pinyinStr.append(PinyinHelper.toHanyuPinyinStringArray(aNewChar, defaultFormat)[0]);
+                    String[] result = PinyinHelper.toHanyuPinyinStringArray(aNewChar, defaultFormat);
+                    pinyinStr.append(result == null || result.length == 0 ? aNewChar : result[0]);
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    e.printStackTrace();
+                    throw new IllegalStateException("拼音转换失败: " + aNewChar, e);
                 }
             } else {
                 pinyinStr.append(aNewChar);

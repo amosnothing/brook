@@ -3,6 +3,7 @@ package cn.nothinghere.brook.value.human;
 import cn.nothinghere.brook.Value;
 import cn.nothinghere.brook.util.RandomUtils;
 
+import java.util.Locale;
 
 /**
  * @author amos.chenj@outlook.com
@@ -26,9 +27,13 @@ public enum Gender implements Value<Integer> {
     }
 
     public static Gender fromName(String name) {
+        if (name == null) {
+            return UNKNOWN;
+        }
+        String normalized = name.toLowerCase(Locale.ROOT);
         Gender[] genders = Gender.values();
         for (Gender gender : genders) {
-            if (name.equals(gender.getName())) {
+            if (normalized.equals(gender.getName()) || name.equals(gender.display)) {
                 return gender;
             }
         }

@@ -24,6 +24,7 @@ public class Bin implements Field, Verifiable, Serializable {
     private Integer length;
 
     private Map.Entry<String, Object> kvHolder;
+    private Integer resolvedLength;
 
     protected static final Map<String, Object> BIN_MAP;
 
@@ -57,11 +58,8 @@ public class Bin implements Field, Verifiable, Serializable {
 
     @Override
     public String asString() {
-        String key = kvHolder.getKey();
-        // 根据最后的两个数字取到长度
-        int len = Integer.parseInt(key.substring(key.length() - 4, key.length() - 2));
         String bin = kvHolder.getValue().toString();
-        return bin + RandomStringUtils.numeric(len - bin.length() - 1);
+        return bin + RandomStringUtils.numeric(this.resolvedLength - bin.length() - 1);
     }
 
     @Override
@@ -71,6 +69,7 @@ public class Bin implements Field, Verifiable, Serializable {
         String cardLength = this.length == null ? null : this.length.toString();
         try {
             kvHolder = JsonPathUtils.random(BIN_MAP, bankCode, cardType, cardLength);
+            this.resolvedLength = Integer.parseInt(JsonPathUtils.lastPathSegment(kvHolder.getKey()));
         } catch (PathNotFoundException exception) {
             throw new IllegalArgumentException(exception.getMessage().replace('$', ' '));
         }

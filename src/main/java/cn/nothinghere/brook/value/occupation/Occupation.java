@@ -17,6 +17,13 @@ import cn.nothinghere.brook.util.YamlUtils;
  */
 public class Occupation implements Field, Randomize, Serializable, Verifiable {
     private static final long serialVersionUID = -8313473735902908218L;
+    private static final MajorType[] RANDOM_MAJOR_TYPES = new MajorType[]{
+            MajorType.PROFESSION,
+            MajorType.BUSINESS_AND_SERVICE_PERSONNEL,
+            MajorType.PRODUCER_AND_OPERATOR,
+            MajorType.FARMER,
+            MajorType.STAFF
+    };
     private MajorType majorType;
     private String valueHolder;
 
@@ -38,11 +45,8 @@ public class Occupation implements Field, Randomize, Serializable, Verifiable {
 
     @Override
     public void randomIfNull() {
-        MajorType[] majorTypes = new MajorType[]{MajorType.PROFESSION, MajorType.BUSINESS_AND_SERVICE_PERSONNEL,
-            MajorType.PRODUCER_AND_OPERATOR, MajorType.FARMER, MajorType.STAFF
-        };
         if (null == this.majorType) {
-            this.majorType = RandomUtils.choice(majorTypes);
+            this.majorType = RandomUtils.choice(RANDOM_MAJOR_TYPES);
         }
     }
 

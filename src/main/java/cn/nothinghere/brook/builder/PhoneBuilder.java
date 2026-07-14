@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author amos.chenj@outlook.com
@@ -30,6 +31,7 @@ public final class PhoneBuilder implements Builder {
     }
 
     public PhoneBuilder withOperator(Operator operator) {
+        Objects.requireNonNull(operator, "operator");
         this.mac.setOperator(operator);
         return this;
     }

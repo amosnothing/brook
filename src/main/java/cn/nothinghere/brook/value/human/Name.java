@@ -133,7 +133,7 @@ public class Name implements Field, Randomize, Serializable {
     public void setLength(Integer length) {
         // 姓名长度只允许取 2，3，4
         if (length < MIN_LENGTH || length > MAX_LENGTH) {
-            throw new IllegalArgumentException("length");
+            throw new IllegalArgumentException("姓名长度只允许取 2~4");
         }
         this.length = length;
     }
@@ -170,14 +170,14 @@ public class Name implements Field, Randomize, Serializable {
 
     @Override
     public void randomIfNull() {
-        long now = System.currentTimeMillis();
         if (null == this.getGender()) {
             // 取到性别未知的概率设置小些, 接近 1/7
             // 男女性别随机概率 1/2 * 6/7 = 3/7
-            this.setGender(now % 7 == 0 ? Gender.UNKNOWN : now % 2 == 0 ? Gender.FEMALE : Gender.MALE);
+            this.setGender(RandomUtils.nextInt(7) == 0 ? Gender.UNKNOWN
+                    : RandomUtils.nextInt(2) == 0 ? Gender.FEMALE : Gender.MALE);
         }
         if (null == this.getLength()) {
-            this.setLength(now % 2 == 0 ? 2 : 3);
+            this.setLength(RandomUtils.nextInt(2, 4));
         }
     }
 }

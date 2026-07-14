@@ -19,6 +19,8 @@ import java.util.stream.Collectors;
  */
 public final class RandomUtils {
 
+    private static final SecureRandom RANDOM = new SecureRandom();
+
     private RandomUtils() {
     }
 
@@ -31,13 +33,16 @@ public final class RandomUtils {
      * @return 被选中的key
      */
     public static <K> K choice(Map<K, Integer> originMap) {
+        if (originMap == null || originMap.isEmpty()) {
+            throw new IllegalArgumentException("源映射不能为空");
+        }
         TreeMap<Double, K> weightMap = new TreeMap<>();
 
         AtomicReference<Double> i = new AtomicReference<>(0D);
         originMap.forEach(
             (k, v) -> weightMap.put((i.updateAndGet(v1 -> v1 + v)), k));
 
-        double randomWeight = weightMap.lastKey() * Math.random();
+        double randomWeight = weightMap.lastKey() * RANDOM.nextDouble();
         SortedMap<Double, K> tailMap = weightMap.tailMap(randomWeight, false);
         return weightMap.get(tailMap.firstKey());
     }
@@ -56,8 +61,9 @@ public final class RandomUtils {
         if (count > tList.size() || count <= 0) {
             throw new IllegalArgumentException("选取的元素个数必须为正数且不能大于源列表长度");
         }
-        Collections.shuffle(tList);
-        return tList.stream().limit(count).collect(Collectors.toList());
+        List<T> copy = new ArrayList<>(tList);
+        Collections.shuffle(copy, RANDOM);
+        return copy.stream().limit(count).collect(Collectors.toList());
     }
 
     /**
@@ -72,7 +78,7 @@ public final class RandomUtils {
         if (tList.isEmpty()) {
             return null;
         }
-        return tList.get(new SecureRandom().nextInt(tList.size()));
+        return tList.get(RANDOM.nextInt(tList.size()));
     }
 
     /**
@@ -89,7 +95,6 @@ public final class RandomUtils {
             throw new IllegalArgumentException("选取的元素个数必须为正数且不能大于源列表长度");
         }
         List<T> list = new ArrayList<>(tSet);
-        Collections.shuffle(list);
         List<T> choice = choice(list, count);
         return new HashSet<>(choice);
     }
@@ -104,7 +109,6 @@ public final class RandomUtils {
      */
     public static <T> T choice(Set<T> tSet) {
         List<T> list = new ArrayList<>(tSet);
-        Collections.shuffle(list);
         return choice(list);
     }
 
@@ -146,7 +150,7 @@ public final class RandomUtils {
      * @return 集合当中随机的某一个数值
      */
     public static <T> T choice(T[] tArray) {
-        return tArray[(new SecureRandom().nextInt(tArray.length))];
+        return tArray[RANDOM.nextInt(tArray.length)];
     }
 
     public static <K, V> V choiceV(Map<K, V> kvMap) {
@@ -167,7 +171,7 @@ public final class RandomUtils {
      * @return 随机奇数
      */
     public static int odd(int bound) {
-        return new SecureRandom().nextInt(bound) | 1;
+        return RANDOM.nextInt(bound) | 1;
     }
 
     /**
@@ -179,14 +183,17 @@ public final class RandomUtils {
      * @return 随机偶数 + 0
      */
     public static int even(int bound) {
-        return new SecureRandom().nextInt(bound) & -2;
+        return RANDOM.nextInt(bound) & -2;
     }
 
     public static int nextInt(int bound) {
-        return new SecureRandom().nextInt(bound);
+        return RANDOM.nextInt(bound);
     }
 
     public static int nextInt(int startInclude, int endExclude) {
-        return new SecureRandom().nextInt(endExclude - startInclude) + startInclude;
+        if (startInclude >= endExclude) {
+            throw new IllegalArgumentException("起始值必须小于结束值");
+        }
+        return RANDOM.nextInt(endExclude - startInclude) + startInclude;
     }
 }

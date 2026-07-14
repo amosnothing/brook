@@ -8,39 +8,39 @@ package cn.nothinghere.brook.builder;
 public final class DataFactory {
 
     public static IdCardBuilder idCardBuilder() {
-        return new IdCardBuilder();
+        return IdCardBuilder.of();
     }
 
     public static NameBuilder nameBuilder() {
-        return new NameBuilder();
+        return NameBuilder.of();
     }
 
     public static PhoneBuilder phoneBuilder() {
-        return new PhoneBuilder();
+        return PhoneBuilder.of();
     }
 
     public static EmailBuilder emailBuilder() {
-        return new EmailBuilder();
+        return EmailBuilder.of();
     }
 
     public static BankCardBuilder bankCardBuilder() {
-        return new BankCardBuilder();
+        return BankCardBuilder.of();
     }
 
     public static AddressBuilder addressBuilder() {
-        return new AddressBuilder();
+        return AddressBuilder.of();
     }
 
     public static CompanyBuilder companyBuilder() {
-        return new CompanyBuilder();
+        return CompanyBuilder.of();
     }
 
     public static LicensePlateBuilder licensePlateBuilder() {
-        return new LicensePlateBuilder();
+        return LicensePlateBuilder.of();
     }
 
     public static OccupationBuilder occupationBuilder() {
-        return new OccupationBuilder();
+        return OccupationBuilder.of();
     }
 
     private DataFactory() {
