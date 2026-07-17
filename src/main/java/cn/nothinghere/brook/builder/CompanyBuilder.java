@@ -18,7 +18,7 @@ import cn.nothinghere.brook.value.Country;
  *
  * @author amos
  */
-public class CompanyBuilder implements Builder {
+public final class CompanyBuilder implements Builder {
 
     private final Company company;
 
@@ -38,7 +38,7 @@ public class CompanyBuilder implements Builder {
      * @return self
      */
     public CompanyBuilder withCountry(Country country) {
-        Objects.requireNonNull(country);
+        Objects.requireNonNull(country, "country");
         this.company.setCountry(country);
         return this;
     }
@@ -50,7 +50,7 @@ public class CompanyBuilder implements Builder {
     }
 
 
-    public static class Company implements Serializable, Field, Randomize {
+    public static final class Company implements Serializable, Field, Randomize {
 
         private static final Map<String, List<String>> MAP;
         private static final long serialVersionUID = -5271600656300216514L;

@@ -10,7 +10,7 @@ public class CompanyBuilderTest {
     @Test
     public void testBuild() {
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < BaseTest.LOOP; i++) {
             String company1 = CompanyBuilder.of().build();
             String company2 = CompanyBuilder.of().withCountry(Country.AMERICA).build();
             String company3 = CompanyBuilder.of().withCountry(Country.CHINA).build();

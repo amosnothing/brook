@@ -9,9 +9,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 /**
@@ -36,15 +33,22 @@ public final class RandomUtils {
         if (originMap == null || originMap.isEmpty()) {
             throw new IllegalArgumentException("源映射不能为空");
         }
-        TreeMap<Double, K> weightMap = new TreeMap<>();
-
-        AtomicReference<Double> i = new AtomicReference<>(0D);
-        originMap.forEach(
-            (k, v) -> weightMap.put((i.updateAndGet(v1 -> v1 + v)), k));
-
-        double randomWeight = weightMap.lastKey() * RANDOM.nextDouble();
-        SortedMap<Double, K> tailMap = weightMap.tailMap(randomWeight, false);
-        return weightMap.get(tailMap.firstKey());
+        int totalWeight = 0;
+        for (Integer weight : originMap.values()) {
+            if (weight == null || weight <= 0) {
+                throw new IllegalArgumentException("权重必须为正数");
+            }
+            totalWeight += weight;
+        }
+        int randomWeight = RANDOM.nextInt(totalWeight) + 1;
+        int cumulativeWeight = 0;
+        for (Map.Entry<K, Integer> entry : originMap.entrySet()) {
+            cumulativeWeight += entry.getValue();
+            if (randomWeight <= cumulativeWeight) {
+                return entry.getKey();
+            }
+        }
+        throw new IllegalStateException("权重随机选择失败");
     }
 
 

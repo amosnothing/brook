@@ -1,7 +1,5 @@
 package cn.nothinghere.brook.builder;
 
-import java.security.SecureRandom;
-
 import cn.nothinghere.brook.value.human.Gender;
 import org.testng.annotations.Test;
 
@@ -25,8 +23,7 @@ public class NameBuilderTest extends BaseTest {
         String name;
         for (int i = 0; i < LOOP; i++) {
             // 长度可选为 2 ~ 3
-            int length =
-                new SecureRandom().nextInt(2) + 2;
+            int length = nextInt(2) + 2;
             // 男性
             name = NameBuilder.of().withLength(length)
                 .withGender(Gender.MALE)
@@ -51,8 +48,7 @@ public class NameBuilderTest extends BaseTest {
     public void testBuildWithPosition() {
         String name;
         for (int i = 0; i < LOOP; i++) {
-            int length =
-                new SecureRandom().nextInt(2) + 2;
+            int length = nextInt(2) + 2;
             // 指定姓氏 + 长度
             name = NameBuilder.of().withLength(length)
                 .build();
@@ -72,8 +68,7 @@ public class NameBuilderTest extends BaseTest {
                 .build();
             assertThat(name).matches("\\W+");
 
-            length =
-                new SecureRandom().nextInt(3) + 2;
+            length = nextInt(3) + 2;
             // 全名 + 长度
             name = NameBuilder.of().withLength(length)
                 .build();
@@ -90,7 +85,7 @@ public class NameBuilderTest extends BaseTest {
     public void testAllParameters() {
         String name;
         for (int i = 0; i < LOOP; i++) {
-            int length = new SecureRandom().nextInt(3) + 2;
+            int length = nextInt(3) + 2;
             // 男性 + 姓氏 + 长度
             name = NameBuilder.of().withLength(length)
                 .withGender(Gender.MALE)
@@ -104,10 +99,10 @@ public class NameBuilderTest extends BaseTest {
             assertThat(name).hasSize(length);
             assertThat(name).matches("\\W+");
 
-            length = new SecureRandom().nextInt(3) + 2;
+            length = nextInt(3) + 2;
             // 全名 + 长度 + 性别
             name = NameBuilder.of().withLength(length)
-                .withGender(new SecureRandom().nextInt(2) == 0 ? Gender.MALE : Gender.FEMALE)
+                .withGender(nextBoolean() ? Gender.MALE : Gender.FEMALE)
                 .build();
             assertThat(name).hasSize(length);
             assertThat(name).matches("\\W+");

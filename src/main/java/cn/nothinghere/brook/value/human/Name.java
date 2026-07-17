@@ -16,6 +16,12 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unchecked")
 public class Name implements Field, Randomize, Serializable {
 
+    private static final String LAST_NAME = "last_name";
+    private static final String FIRST_NAME = "first_name";
+    private static final String MALE = "male";
+    private static final String FEMALE = "female";
+    private static final String UNKNOWN = "unknown";
+
     private Gender gender;
     private Integer length;
 
@@ -87,35 +93,19 @@ public class Name implements Field, Randomize, Serializable {
 
     static {
         NAME_MAP = Collections.unmodifiableMap(YamlUtils.load("name.yml"));
-        LAST_NAME_MAP = Collections.unmodifiableMap((Map<String, Integer>) NAME_MAP.get("last_name"));
-        FIRST_NAME_MAP = Collections.unmodifiableMap((Map<String, Object>) NAME_MAP.get("first_name"));
-        FIRST_NAME_MALE_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("male"));
-        FIRST_NAME_FEMALE_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("female"));
-        FIRST_NAME_UNKNOWN_MAP = Collections.unmodifiableMap((Map<String, Integer>) FIRST_NAME_MAP.get("unknown"));
-        LAST_NAME_LEN1_MAP = LAST_NAME_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        LAST_NAME_LEN2_MAP = LAST_NAME_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 2)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_FEMALE_LEN2_MAP = FIRST_NAME_FEMALE_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 2)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_FEMALE_LEN1_MAP = FIRST_NAME_FEMALE_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_MALE_LEN2_MAP = FIRST_NAME_MALE_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 2)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_MALE_LEN1_MAP = FIRST_NAME_MALE_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_UNKNOWN_LEN2_MAP = FIRST_NAME_UNKNOWN_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 2)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        FIRST_NAME_UNKNOWN_LEN1_MAP = FIRST_NAME_UNKNOWN_MAP.entrySet().stream()
-                .filter(map -> map.getKey().length() == 1)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        LAST_NAME_MAP = childIntegerMap(NAME_MAP, LAST_NAME);
+        FIRST_NAME_MAP = Collections.unmodifiableMap((Map<String, Object>) NAME_MAP.get(FIRST_NAME));
+        FIRST_NAME_MALE_MAP = childIntegerMap(FIRST_NAME_MAP, MALE);
+        FIRST_NAME_FEMALE_MAP = childIntegerMap(FIRST_NAME_MAP, FEMALE);
+        FIRST_NAME_UNKNOWN_MAP = childIntegerMap(FIRST_NAME_MAP, UNKNOWN);
+        LAST_NAME_LEN1_MAP = filterByLength(LAST_NAME_MAP, 1);
+        LAST_NAME_LEN2_MAP = filterByLength(LAST_NAME_MAP, 2);
+        FIRST_NAME_FEMALE_LEN2_MAP = filterByLength(FIRST_NAME_FEMALE_MAP, 2);
+        FIRST_NAME_FEMALE_LEN1_MAP = filterByLength(FIRST_NAME_FEMALE_MAP, 1);
+        FIRST_NAME_MALE_LEN2_MAP = filterByLength(FIRST_NAME_MALE_MAP, 2);
+        FIRST_NAME_MALE_LEN1_MAP = filterByLength(FIRST_NAME_MALE_MAP, 1);
+        FIRST_NAME_UNKNOWN_LEN2_MAP = filterByLength(FIRST_NAME_UNKNOWN_MAP, 2);
+        FIRST_NAME_UNKNOWN_LEN1_MAP = filterByLength(FIRST_NAME_UNKNOWN_MAP, 1);
     }
 
     public Gender getGender() {
@@ -154,16 +144,13 @@ public class Name implements Field, Randomize, Serializable {
         String firstName;
         switch (this.getGender()) {
             case FEMALE:
-                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_FEMALE_LEN2_MAP)
-                        : RandomUtils.choice(FIRST_NAME_FEMALE_LEN1_MAP);
+                firstName = chooseFirstName(FIRST_NAME_FEMALE_LEN2_MAP, FIRST_NAME_FEMALE_LEN1_MAP, firstNameLength);
                 break;
             case MALE:
-                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_MALE_LEN2_MAP)
-                        : RandomUtils.choice(FIRST_NAME_MALE_LEN1_MAP);
+                firstName = chooseFirstName(FIRST_NAME_MALE_LEN2_MAP, FIRST_NAME_MALE_LEN1_MAP, firstNameLength);
                 break;
             default:
-                firstName = firstNameLength == 2 ? RandomUtils.choice(FIRST_NAME_UNKNOWN_LEN2_MAP)
-                        : RandomUtils.choice(FIRST_NAME_UNKNOWN_LEN1_MAP);
+                firstName = chooseFirstName(FIRST_NAME_UNKNOWN_LEN2_MAP, FIRST_NAME_UNKNOWN_LEN1_MAP, firstNameLength);
         }
         return lastName + firstName;
     }
@@ -179,5 +166,21 @@ public class Name implements Field, Randomize, Serializable {
         if (null == this.getLength()) {
             this.setLength(RandomUtils.nextInt(2, 4));
         }
+    }
+
+    private static Map<String, Integer> childIntegerMap(Map<String, ?> parent, String key) {
+        return Collections.unmodifiableMap((Map<String, Integer>) parent.get(key));
+    }
+
+    private static Map<String, Integer> filterByLength(Map<String, Integer> source, int length) {
+        return source.entrySet().stream()
+                .filter(entry -> entry.getKey().length() == length)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    private static String chooseFirstName(Map<String, Integer> length2Names,
+                                          Map<String, Integer> length1Names,
+                                          int firstNameLength) {
+        return firstNameLength == 2 ? RandomUtils.choice(length2Names) : RandomUtils.choice(length1Names);
     }
 }

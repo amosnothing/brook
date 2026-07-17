@@ -18,8 +18,8 @@ public enum Gender implements Value<Integer> {
     UNKNOWN("unknown", "未知"),
     ;
 
-    private String name;
-    private String display;
+    private final String name;
+    private final String display;
 
     private Gender(String name, String display) {
         this.name = name;
@@ -42,6 +42,10 @@ public enum Gender implements Value<Integer> {
 
     public String getName() {
         return name;
+    }
+
+    public String getDisplay() {
+        return display;
     }
 
     /**

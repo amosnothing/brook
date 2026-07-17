@@ -1,7 +1,10 @@
 package cn.nothinghere.brook.value.region;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static cn.nothinghere.brook.value.region.Province.ANHUI;
@@ -470,8 +473,21 @@ public enum City implements Region {
     PENINSULAOFMACAO(MACAO, "澳门半岛"),
     LIDAO(MACAO, "离岛"),
     ;
+    private static final Map<Province, City[]> CITIES_BY_PARENT;
     private final Province parent;
     private final String name;
+
+    static {
+        Map<Province, List<City>> cityMap = new EnumMap<>(Province.class);
+        for (City city : City.values()) {
+            cityMap.computeIfAbsent(city.parent, key -> new ArrayList<>()).add(city);
+        }
+        Map<Province, City[]> resolvedMap = new EnumMap<>(Province.class);
+        for (Map.Entry<Province, List<City>> entry : cityMap.entrySet()) {
+            resolvedMap.put(entry.getKey(), entry.getValue().toArray(new City[0]));
+        }
+        CITIES_BY_PARENT = Collections.unmodifiableMap(resolvedMap);
+    }
 
     City(Province parent, String name) {
         this.parent = parent;
@@ -479,15 +495,9 @@ public enum City implements Region {
     }
 
     public static City[] getByParent(Province parent) {
-        Objects.requireNonNull(parent);
-        City[] cities = City.values();
-        List<City> cityList = new ArrayList<>();
-        for (City city : cities) {
-            if (city.getParent() == parent) {
-                cityList.add(city);
-            }
-        }
-        return cityList.toArray(new City[0]);
+        Objects.requireNonNull(parent, "parent");
+        City[] cities = CITIES_BY_PARENT.get(parent);
+        return cities == null ? new City[0] : cities.clone();
     }
 
     public String getName() {
