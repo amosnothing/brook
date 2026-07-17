@@ -48,6 +48,7 @@
         <maven-install-plugin-version>3.1.2</maven-install-plugin-version>
         <maven-gpg-plugin-version>1.6</maven-gpg-plugin-version>
         <maven-javadoc-plugin-version>3.2.0</maven-javadoc-plugin-version>
+        <central-publishing-maven-plugin-version>0.11.0</central-publishing-maven-plugin-version>
     </properties>
 
     <dependencies>
@@ -116,10 +117,20 @@
     </build>
     <profiles>
         <profile>
-            <!--  发布到oss中央仓库  -->
+            <!-- 发布到 Maven Central Portal -->
             <id>release</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${central-publishing-maven-plugin-version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <deploymentName>${project.groupId}:${project.artifactId}:${project.version}</deploymentName>
+                        </configuration>
+                    </plugin>
                     <!-- Source -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -169,16 +180,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
         </profile>
         <profile>
             <!--发布到本地仓库 方便测试-->
